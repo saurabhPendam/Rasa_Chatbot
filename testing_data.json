@@ -1,0 +1,182 @@
+[
+    {
+        "text": "I feel down and hopeless",
+        "intent": "depression"
+    },
+    {
+        "text": "I can't focus on anything lately",
+        "intent": "anxiety"
+    },
+    {
+        "text": "I'm having trouble sleeping. What are some tips for better sleep hygiene?",
+        "intent": "informational_sleep"
+    },
+    {
+        "text": "I keep feeling on edge. How can I manage stress?",
+        "intent": "informational_stress"
+    },
+    {
+        "text": "I'm feeling overwhelmed with everything. Is there anything I can do to cope?",
+        "intent": "stress"
+    },
+    {
+        "text": "I just procrastinate on everything. How do I stop?",
+        "intent": "procrastination"
+    },
+    {
+        "text": "Can you tell me some self-care techniques for managing anxiety?",
+        "intent": "informational_self_care_anxiety"
+    },
+    {
+        "text": "I'm not sure what's wrong with me, but I feel off. Can you help?",
+        "intent": "unsure"
+    },
+    {
+        "text": "Thanks for listening, this has been helpful!",
+        "intent": "gratitude"
+    },
+    {
+        "text": "Hey! How are you today?",
+        "intent": "greeting"
+    },
+    {
+        "text": "Do you have any information about meditation?",
+        "intent": "informational_meditation"
+    },
+    {
+        "text": "I'm feeling angry all the time. What can I do about it?",
+        "intent": "anger"
+    },
+    {
+        "text": "I'm constantly worrying about the future. How do I deal with this anxiety?",
+        "intent": "future_anxiety"
+    },
+    {
+        "text": "I feel like I'm always tired, no matter how much I sleep. What could be causing this fatigue?",
+        "intent": "fatigue"
+    },
+    {
+        "text": "I'm finding it hard to enjoy things I used to love. Is this a sign of depression?",
+        "intent": "anhedonia"
+    },
+    {
+        "text": "How can I support a friend who is struggling with their mental health?",
+        "intent": "supporting_friends"
+    },
+    {
+        "text": "I'm feeling really low on motivation lately. Any tips to boost it?",
+        "intent": "motivation"
+    },
+    {
+        "text": "I have a fear of social situations. How can I overcome social anxiety?",
+        "intent": "social_anxiety"
+    },
+    {
+        "text": "I'm constantly feeling restless and on edge. What could be causing this?",
+        "intent": "restlessness"
+    },
+    {
+        "text": "I'm struggling with low self-esteem. How can I improve my self-confidence?",
+        "intent": "self_confidence"
+    },
+    {
+        "text": "I've been experiencing panic attacks. What should I do when I have one?",
+        "intent": "panic_attack"
+    },
+    {
+        "text": "I feel like I'm always on the verge of tears. What can I do about this constant emotional state?",
+        "intent": "emotional_instability"
+    },
+    {
+        "text": "I'm finding it hard to concentrate on anything. Could this be a symptom of something?",
+        "intent": "concentration_issues"
+    },
+    {
+        "text": "I'm feeling really lonely lately. How can I cope with loneliness?",
+        "intent": "loneliness"
+    },
+    {
+        "text": "I'm having trouble finding the motivation to get out of bed. What can I do?",
+        "intent": "get_out_of_bed"
+    },
+    {
+        "text": "I keep having intrusive thoughts. How do I stop them?",
+        "intent": "intrusive_thoughts"
+    },
+    {
+        "text": "I'm constantly worried about what others think of me. How do I stop caring?",
+        "intent": "stop_caring"
+    },
+    {
+        "text": "I'm feeling restless and jittery. How can I calm down?",
+        "intent": "anxiety"
+    },
+    {
+        "text": "I'm experiencing tightness in my chest and difficulty breathing. What should I do?",
+        "intent": "anxiety"
+    },
+    {
+        "text": "I'm constantly feeling on edge, even in situations that shouldn't be stressful.",
+        "intent": "anxiety"
+    },
+    {
+        "text": "I'm having trouble controlling my temper lately. How can I manage my anger?",
+        "intent": "anger"
+    },
+    {
+        "text": "I often feel like punching something when I'm angry. Is this normal?",
+        "intent": "anger"
+    },
+    {
+        "text": "I'm feeling frustrated and irritable all the time. How do I deal with this?",
+        "intent": "anger"
+    },
+    {
+        "text": "I'm feeling overwhelmed with work and family responsibilities. How can I reduce my stress?",
+        "intent": "stress"
+    },
+    {
+        "text": "I have trouble relaxing and always feel tense. Any tips for stress relief?",
+        "intent": "stress"
+    },
+    {
+        "text": "I'm finding it hard to sleep due to stress and worry. What should I do?",
+        "intent": "stress"
+    },
+    {
+        "text": "I need information on different types of therapy for mental health issues.",
+        "intent": "mental_health_information"
+    },
+    {
+        "text": "What are the signs that someone may be struggling with a mental health disorder?",
+        "intent": "mental_health_information"
+    },
+    {
+        "text": "I'm interested in learning about the benefits of mindfulness meditation for mental health.",
+        "intent": "mental_health_information"
+    },
+    {
+        "text": "Can you suggest some relaxation techniques for managing stress and anxiety?",
+        "intent": "self_care"
+    },
+    {
+        "text": "How can I incorporate more self-care into my daily routine?",
+        "intent": "self_care"
+    },
+    {
+        "text": "I'm feeling burnt out and exhausted. How do I practice better self-care?",
+        "intent": "self_care"
+    },
+    {
+        "text": "I keep procrastinating on important tasks. How can I break this habit?",
+        "intent": "procrastination"
+    },
+    {
+        "text": "I want to stop procrastinating and be more productive. Any tips?",
+        "intent": "procrastination"
+    },
+    {
+        "text": "I have a tendency to procrastinate until the last minute. How do I change this behavior?",
+        "intent": "procrastination"
+    }
+]

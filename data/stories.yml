@@ -1,0 +1,743 @@
+version: "3.1"
+
+stories:
+
+# - story: greet path
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - action: action_emotion
+#   - action: utter_ask_mood
+
+# - story: Ask the user if he want to share emotions or not
+#   steps:
+#   - intent: greet
+#   - action: action_emotion
+#   - action: utter_greet
+#   - action: utter_can_you_tell
+#   - intent: affirm
+#   - action: utter_answer_yes
+#   - action: utter_ask_mood
+#   - intent: deny
+#   - action: utter_answer_no
+
+- story: greet
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: action_emotion
+
+- story: morning path
+  steps:
+  - intent: morning
+  - action: utter_morning
+  - action: action_emotion
+
+- story: afternoon path
+  steps:
+  - intent: afternoon
+  - action: utter_afternoon
+  - action: action_emotion
+
+- story: evening path
+  steps:
+  - intent: evening
+  - action: utter_evening
+  - action: action_emotion
+
+- story: thanks
+  steps:
+  - intent: thanks
+  - action: utter_thanks
+  - action: action_emotion
+
+- story: no_response 
+  steps:
+  - intent: no_response
+  - action: utter_no_response
+  - action: action_emotion
+
+- story: neutral_response
+  steps:
+  - intent: neutral_response
+  - action: utter_neutral_response
+  - action: action_emotion
+
+- story: about
+  steps:
+  - intent: about
+  - action: utter_about
+  - action: action_emotion
+
+- story: skill
+  steps:
+  - intent: skill
+  - action: utter_skill
+  - action: action_emotion
+
+- story: creation
+  steps:
+  - intent: creation
+  - action: utter_creation
+  - action: action_emotion
+
+- story: goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+  - action: action_emotion
+  - action: action_generate_report
+
+- story: affirm
+  steps:
+  - intent: affirm
+  - action: utter_affirm
+  - action: action_emotion
+
+- story: deny
+  steps:
+  - intent: deny
+  - action: utter_deny
+  - action: action_emotion
+
+- story: happy
+  steps:
+  - intent: happy
+  - action: utter_happy
+  - action: action_emotion
+
+- story: happy emoji
+  steps:
+  - intent: happy_emoji
+  - action: utter_happy_emoji
+  - action: action_emotion
+
+- story: sad 
+  steps:
+  - intent: sad
+  - action: utter_sad
+  - action: action_emotion
+
+- story: angry
+  steps:
+  - intent: angry
+  - action: utter_angry
+  - action: action_emotion
+
+- story: tired
+  steps:
+  - intent: tired
+  - action: utter_tired
+  - action: action_emotion
+
+- story: more_options
+  steps:
+  - intent: more_options
+  - action: utter_more_options
+  - action: action_emotion
+
+- story: help
+  steps:
+  - intent: help
+  - action: utter_help
+  - action: action_emotion
+
+- story: ask mood
+  steps: 
+  - intent: ask_mood
+  - action: utter_ask_mood
+  - action: action_emotion
+
+- story: stressed
+  steps:
+  - intent: stressed
+  - action: utter_stressed
+  - action: action_emotion
+
+- story: worthless 
+  steps:
+  - intent: worthless
+  - action: utter_worthless
+  - action: action_emotion
+
+- story: depressed
+  steps:
+  - intent: depressed
+  - action: utter_depressed
+  - action: action_emotion
+
+- story: casual
+  steps:
+  - intent: casual
+  - action: utter_casual
+  - action: action_emotion
+
+- story: anxious
+  steps:
+  - intent: anxious
+  - action: utter_anxious
+  - action: action_emotion
+
+- story: not talking
+  steps:
+  - intent: not_talking
+  - action: utter_not_talking
+  - action: action_emotion
+
+- story: sleep
+  steps:
+  - intent: sleep
+  - action: utter_sleep
+  - action: action_emotion
+
+- story: scared
+  steps:
+  - intent: scared
+  - action: utter_scared
+  - action: action_emotion
+
+- story: death
+  steps:
+  - intent: death
+  - action: utter_death
+  - action: action_emotion
+
+- story: understand
+  steps:
+  - intent: understand
+  - action: utter_understand
+  - action: action_emotion
+
+- story: done
+  steps:
+  - intent: done
+  - action: utter_done
+  - action: action_emotion
+
+- story: suicide
+  steps:
+  - intent: suicide
+  - action: utter_suicide
+  - action: action_emotion
+
+- story: hate you
+  steps:
+  - intent: hate_you
+  - action: utter_hate_you
+  - action: action_emotion
+
+- story: hate me
+  steps:
+  - intent: hate_me
+  - action: utter_hate_me
+  - action: action_emotion
+
+- story: default
+  steps:
+  - intent: default
+  - action: utter_default
+  - action: action_emotion
+
+- story: jokes
+  steps:
+  - intent: jokes
+  - action: utter_jokes
+  - action: action_emotion
+
+- story: repeat
+  steps:
+  - intent: repeat
+  - action: utter_repeat
+  - action: action_emotion
+
+- story: wrong
+  steps:
+  - intent: wrong
+  - action: utter_wrong
+  - action: action_emotion
+
+- story: stupid
+  steps:
+  - intent: stupid
+  - action: utter_stupid
+  - action: action_emotion
+
+- story: location
+  steps:
+  - intent: location
+  - action: utter_location
+  - action: action_emotion
+
+- story: something else
+  steps:
+  - intent: something_else
+  - action: utter_something_else
+  - action: action_emotion
+
+- story: friends
+  steps:
+  - intent: friends
+  - action: utter_friends
+  - action: action_emotion
+
+- story: ask
+  steps:
+  - intent: ask
+  - action: utter_ask
+  - action: action_emotion
+
+- story: problem
+  steps:
+  - intent: problem
+  - action: utter_problem
+  - action: action_emotion
+
+- story: no approach
+  steps:
+  - intent: no_approach
+  - action: utter_no_approach
+  - action: action_emotion
+
+- story: learn more
+  steps:
+  - intent: learn_more
+  - action: utter_learn_more
+  - action: action_emotion
+
+- story: user agree
+  steps:
+  - intent: user_agree
+  - action: utter_user_agree
+  - action: action_emotion
+
+- story: meditation
+  steps:
+  - intent: meditation
+  - action: utter_meditation
+  - action: action_emotion
+
+- story: user meditation
+  steps:
+  - intent: user_meditation
+  - action: utter_user_meditation
+  - action: action_emotion
+
+- story: MindLift useful
+  steps:
+  - intent: MindLift_useful
+  - action: utter_MindLift_useful
+  - action: action_emotion
+
+- story: user advice
+  steps:
+  - intent: user_advice
+  - action: utter_user_advice
+  - action: action_emotion
+
+- story: self care
+  steps:
+  - intent: self_care
+  - action: utter_self_care
+  - action: action_emotion
+
+- story: crisis
+  steps:
+  - intent: crisis
+  - action: utter_crisis
+  - action: action_emotion
+
+- story: procrastination
+  steps:
+  - intent: procrastination
+  - action: utter_procrastination
+  - action: action_emotion
+
+- story: why procrastination
+  steps:
+  - intent: why_procrastination
+  - action: utter_why_procrastination
+  - action: action_emotion
+
+- story: how procrastination
+  steps:
+  - intent: how_procrastination
+  - action: utter_how_procrastination
+  - action: action_emotion
+
+- story: procrastination beneficial
+  steps:
+  - intent: procrastination_beneficial
+  - action: utter_procrastination_beneficial
+  - action: action_emotion
+
+- story: strategies procrastination
+  steps:
+  - intent: strategies_procrastination
+  - action: utter_strategies_procrastination
+  - action: action_emotion
+
+- story: affect procrastination
+  steps:
+  - intent: affect_procrastination
+  - action: utter_affect_procrastination
+  - action: action_emotion
+
+- story: types procrastination
+  steps:
+  - intent: types_procrastination
+  - action: utter_types_procrastination
+  - action: action_emotion
+
+- story: revenge bedtime procrastination
+  steps:
+  - intent: revenge_bedtime_procrastination
+  - action: utter_revenge_bedtime_procrastination
+  - action: action_emotion
+
+- story: technology contribute procrastination
+  steps:
+  - intent: technology_contribute_procrastination
+  - action: utter_technology_contribute_procrastination
+  - action: action_emotion
+
+- story: learn mental health
+  steps:
+  - intent: learn_mental_health
+  - action: utter_learn_mental_health
+  - action: action_emotion
+
+- story: mental health
+  steps:
+  - intent: mental_health
+  - action: utter_mental_health
+  - action: action_emotion
+
+- story: mental health important
+  steps:
+  - intent: mental_health_important
+  - action: utter_mental_health_important
+  - action: action_emotion
+
+- story: depression
+  steps:
+  - intent: depression
+  - action: utter_depression
+  - action: action_emotion
+
+- story: psychiatrist
+  steps:
+  - intent: psychiatrist
+  - action: utter_psychiatrist
+  - action: action_emotion
+
+- story: symptom depression
+  steps:
+  - intent: symptom_depression
+  - action: utter_symptom_depression
+  - action: action_emotion
+
+- story: therapist
+  steps:
+  - intent: therapist
+  - action: utter_therapist
+  - action: action_emotion
+
+- story: therapy
+  steps:
+  - intent: therapy
+  - action: utter_therapy
+  - action: action_emotion
+
+- story: mental illness
+  steps:
+  - intent: mental_illness
+  - action: utter_mental_illness
+  - action: action_emotion
+
+- story: mental illness affect
+  steps:
+  - intent: mental_illness_affect
+  - action: utter_mental_illness_affect
+  - action: action_emotion
+
+- story: causes mental illness
+  steps:
+  - intent: causes_mental_illness
+  - action: utter_causes_mental_illness
+  - action: action_emotion
+
+- story: sign mental illness
+  steps:
+  - intent: sign_mental_illness
+  - action: utter_sign_mental_illness
+  - action: action_emotion
+
+- story: mental illness recover
+  steps:
+  - intent: mental_illness_recover
+  - action: utter_mental_illness_recover
+  - action: action_emotion
+
+- story: mental illness symptoms
+  steps:
+  - intent: mental_illness_symptoms
+  - action: utter_mental_illness_symptoms
+  - action: action_emotion
+
+- story: mental illness professional
+  steps:
+  - intent: mental_illness_professional
+  - action: utter_mental_illness_professional
+  - action: action_emotion
+
+- story: mental health treatment
+  steps:
+  - intent: mental_health_treatment
+  - action: utter_mental_health_treatment
+  - action: action_emotion
+
+- story: mental health involved
+  steps:
+  - intent: mental_health_involved
+  - action: utter_mental_health_involved
+  - action: action_emotion
+
+- story: difference mental health professional
+  steps:
+  - intent: difference_mental_health_professional
+  - action: utter_difference_mental_health_professional
+  - action: action_emotion
+
+- story: where help
+  steps:
+  - intent: where_help
+  - action: utter_where_help
+  - action: action_emotion
+
+- story: medication new
+  steps:
+  - intent: medication_new
+  - action: utter_medication_new
+  - action: action_emotion
+
+- story: where therapy
+  steps:
+  - intent: where_therapy
+  - action: utter_where_therapy
+  - action: action_emotion
+
+- story: types mental health treatment
+  steps:
+  - intent: types_mental_health_treatment
+  - action: utter_types_mental_health_treatment
+  - action: action_emotion
+
+- story: types mental health professional
+  steps:
+  - intent: types_mental_health_professional
+  - action: utter_types_mental_health_professional
+  - action: action_emotion
+
+- story: find support
+  steps:
+  - intent: find_support
+  - action: utter_find_support
+  - action: action_emotion
+
+- story: suffer mental health
+  steps:
+  - intent: suffer_mental_health
+  - action: utter_suffer_mental_health
+  - action: action_emotion
+
+- story: cure mental health problems
+  steps:
+  - intent: cure_mental_health_problems
+  - action: utter_cure_mental_health_problems
+  - action: action_emotion
+
+- story: causes mental problem
+  steps:
+  - intent: causes_mental_problem
+  - action: utter_causes_mental_problem
+  - action: action_emotion
+
+- story: worried mental health
+  steps:
+  - intent: worried_mental_health
+  - action: utter_worried_mental_health
+  - action: action_emotion
+
+- story: know unwell
+  steps:
+  - intent: know_unwell
+  - action: utter_know_unwell
+  - action: action_emotion
+
+- story: maintain social connection
+  steps:
+  - intent: maintain_social_connection
+  - action: utter_maintain_social_connection
+  - action: action_emotion
+
+- story: anxiety stress
+  steps:
+  - intent: anxiety_stress
+  - action: utter_anxiety_stress
+  - action: action_emotion
+
+- story: sadness depression
+  steps:
+  - intent: sadness_depression
+  - action: utter_sadness_depression
+  - action: action_emotion
+
+- story: cured medication
+  steps:
+  - intent: cured_medication
+  - action: utter_cured_medication
+  - action: action_emotion
+
+- story: pay medication
+  steps:
+  - intent: pay_medication
+  - action: utter_pay_medication
+  - action: action_emotion
+
+- story: inpatient care
+  steps:
+  - intent: inpatient_care
+  - action: utter_inpatient_care
+  - action: action_emotion
+
+- story: local service
+  steps:
+  - intent: local_service
+  - action: utter_local_service
+  - action: action_emotion
+
+- story: information clinical trials
+  steps:
+  - intent: information_clinical_trials
+  - action: utter_information_clinical_trials
+  - action: action_emotion
+
+- story: psychiatric advance directive
+  steps:
+  - intent: psychiatric_advance_directive
+  - action: utter_psychiatric_advance_directive
+  - action: action_emotion
+
+- story: support doesn't help
+  steps:
+  - intent: support_doesn't_help
+  - action: utter_support_doesn't_help
+  - action: action_emotion
+
+- story: prevent mental health problems
+  steps:
+  - intent: prevent_mental_health_problems
+  - action: utter_prevent_mental_health_problems
+  - action: action_emotion
+
+- story: worried friend relative
+  steps:
+  - intent: worried_friend_relative
+  - action: utter_worried_friend_relative
+  - action: action_emotion
+
+- story: someone telling
+  steps:
+  - intent: someone_telling
+  - action: utter_someone_telling
+  - action: action_emotion
+
+- story: keep informed
+  steps:
+  - intent: keep_informed
+  - action: utter_keep_informed
+  - action: action_emotion
+
+- story: health info good bad
+  steps:
+  - intent: health_info_good_bad
+  - action: utter_health_info_good_bad
+  - action: action_emotion
+
+- story: why plan
+  steps:
+  - intent: why_plan
+  - action: utter_why_plan
+  - action: action_emotion
+
+- story: take care physical health
+  steps:
+  - intent: take_care_physical_health
+  - action: utter_take_care_physical_health
+  - action: action_emotion
+
+- story: distraction difficult thoughts
+  steps:
+  - intent: distraction_difficult_thoughts
+  - action: utter_distraction_difficult_thoughts
+  - action: action_emotion
+
+- story: balanced perspective
+  steps:
+  - intent: balanced_perspective
+  - action: utter_balanced_perspective
+  - action: action_emotion
+
+- story: thinking traps
+  steps:
+  - intent: thinking_traps
+  - action: utter_thinking_traps
+  - action: action_emotion
+
+- story: manage grief
+  steps:
+  - intent: manage_grief
+  - action: utter_manage_grief
+  - action: action_emotion
+
+- story: find doctor psychiatrist
+  steps:
+  - intent: find_doctor_psychiatrist
+  - action: utter_find_doctor_psychiatrist
+  - action: action_emotion
+
+- story: see psychiatrist
+  steps:
+  - intent: see_psychiatrist
+  - action: utter_see_psychiatrist
+  - action: action_emotion
+
+- story: see psychologist
+  steps:
+  - intent: see_psychologist
+  - action: utter_see_psychologist
+  - action: action_emotion
+
+- story: see counsellor
+  steps:
+  - intent: see_counsellor
+  - action: utter_see_counsellor
+  - action: action_emotion
+
+- story: help materials anxiety
+  steps:
+  - intent: help_materials_anxiety
+  - action: utter_help_materials_anxiety
+  - action: action_emotion
+
+- story: help materials depression
+  steps:
+  - intent: help_materials_depression
+  - action: utter_help_materials_depression
+  - action: action_emotion
+
+- story: i am a bot
+  steps:
+  - intent: iamabot
+  - action: utter_iamabot
+  - action: action_emotion

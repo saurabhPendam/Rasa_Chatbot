@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sentiment Report</title>
+</head>
+<body>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% else %}
+        <form method="post" action="/generate-report/">
+            {% csrf_token %}
+            <input type="hidden" name="report_content" value="{{ report_content }}">
+            <button type="submit">Download Report</button>
+        </form>
+    {% endif %}
+</body>
+</html>

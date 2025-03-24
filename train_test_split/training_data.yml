@@ -1,0 +1,993 @@
+version: "3.1"
+nlu:
+- intent: no_response
+  examples: |
+    - .
+- intent: neutral_response
+  examples: |
+    - nothing much 🤷‍♂️
+- intent: happy_emoji
+  examples: |
+    - 😁
+- intent: MindLift_useful
+  examples: |
+    - Thank you very much again. I'll continue practicing meditation and focus on what I can control. 🙏
+- intent: mental_health_important
+  examples: |
+    - Why is mental health important?
+- intent: causes_mental_illness
+  examples: |
+    - What causes mental illness? 🤔
+- intent: sign_mental_illness
+  examples: |
+    - What are some of the warning signs of mental illness?
+- intent: mental_illness_recover
+  examples: |
+    - Can people with mental illness recover? 🤔
+- intent: mental_illness_symptoms
+  examples: |
+    - What should I do if I know someone who appears to have the symptoms of a mental disorder?
+- intent: mental_health_treatment
+  examples: |
+    - What treatment options are available? 💼
+- intent: mental_health_involved
+  examples: |
+    - If I become involved in treatment, what do I need to know?
+- intent: difference_mental_health_professional
+  examples: |
+    - What is the difference between mental health professionals? 🧠
+- intent: where_help
+  examples: |
+    - Where else can I get help? 🤔
+- intent: medication_new
+  examples: |
+    - What should I know before starting a new medication?
+- intent: where_therapy
+  examples: |
+    - Where can I go to find therapy? 🛋️
+- intent: types_mental_health_treatment
+  examples: |
+    - Where can I learn about types of mental health treatment? 📚
+- intent: types_mental_health_professional
+  examples: |
+    - What are the different types of mental health professionals? 🧠
+- intent: suffer_mental_health
+  examples: |
+    - We can all suffer from mental health challenges, but developing our wellbeing, resilience, and seeking help early can help prevent challenges becoming serious.
+- intent: causes_mental_problem
+  examples: |
+    - What causes mental health problems? 🤔
+- intent: worried_mental_health
+  examples: |
+    - What do I do if I'm worried about my mental health? 🤔
+- intent: know_unwell
+  examples: |
+    - How do I know if I'm unwell?
+- intent: anxiety_stress
+  examples: |
+    - What's the difference between anxiety and stress?
+- intent: depression_down
+  examples: |
+    - I've been feeling really down lately.
+- intent: coping_strategies
+  examples: |
+    - What are some coping strategies for managing stress?
+    - Can you suggest some coping strategies for dealing with depression?
+- intent: seeking_support
+  examples: |
+    - How can I ask for help without feeling like a burden?
+    - Is it okay to seek support from friends and family?
+- intent: feeling_down
+  examples: |
+    - Lately, I've been feeling really low.
+    - I'm feeling really down today.
+- intent: self_care_tips
+  examples: |
+    - How can I practice self-care when I'm feeling overwhelmed?
+    - Can you recommend some self-care activities for improving my mood?
+- intent: therapy_options
+  examples: |
+    - I'm considering therapy but not sure where to start.
+    - What are the different types of therapy available?
+- intent: considering_therapy
+  examples: |
+    - Is therapy worth it?
+    - I've thought about therapy, but I don't know if it would really help.
+- intent: afternoon
+  examples: |
+    - Good Afternoon
+    - Good Afternoon ☀️
+    - afternoon
+- intent: evening
+  examples: |
+    - good evening
+    - good evening 🌆
+    - evening
+- intent: anxious
+  examples: |
+    - I'm so anxious.
+    - I feel so anxious.
+    - I feel so anxious.😟
+- intent: no_approach
+  examples: |
+    - i guess not
+    - I guess not. All I can think about my exams.
+    - i guess not 🤷‍♂️
+- intent: user_agree
+  examples: |
+    - Yeah you're right. I deserve a break. 👍
+    - Yeah you're absolutely right about that 👍
+    - Yeah you're right. I deserve a break.
+- intent: psychiatrist
+  examples: |
+    - psychiatrist 🧠
+    - What is a psychiatrist? 🧠
+    - psychiatrist
+- intent: therapist
+  examples: |
+    - What is therapist?
+    - What does a therapist do? 🧠
+    - What is a therapist? 🧠
+- intent: mental_illness
+  examples: |
+    - What does it feel like to have a mental illness? 🤔
+    - What does it mean to have a mental illness?
+    - What does it mean to have a mental illness? 🧠
+- intent: mental_illness_affect
+  examples: |
+    - who does mental illness affect?
+    - How does mental illness affect people? 🧠
+    - Who does mental illness affect? 🧠
+- intent: find_support
+  examples: |
+    - How can I find a support group? 🧑‍🤝‍🧑
+    - Where can I go to find a support group?
+    - How can I find a support group?
+- intent: cure_mental_health_problems
+  examples: |
+    - is there any cure for mental health problems?
+    - Are there cures for mental health problems? 🤔
+    - Is there any cure for mental health problems? 🤔
+- intent: sadness_depression
+  examples: |
+    - difference between sadness and depression?
+    - What's the difference between sadness and depression?
+    - What's the difference between sadness and depression? 🤔
+- intent: cured_medication
+  examples: |
+    - If I feel good after taking some medication, can i stop taking medication?
+    - If I feel good after taking some medication, can I stop taking medication? 🤔
+    - If I feel better after taking medication, does this mean I am "cured" and can stop taking it? 🤔
+- intent: pay_medication
+  examples: |
+    - How can I get help paying for my medication?
+    - can i get help paying for my medication?
+    - Can I get help paying for my medication? 💊
+- intent: inpatient_care
+  examples: |
+    - Can I go find inpatient care? 🏥
+    - Where can I go to find inpatient care?
+    - can i go find inpatient care?
+- intent: local_service
+  examples: |
+    - Where can I go to find other local services?
+    - Where can I go to find other local services? 📍
+    - Where does can i go to find other local services nearby?
+- intent: support_doesn't_help
+  examples: |
+    - What do I do if the support doesn't help? 🤔
+    - If support doesn't help? 🤔
+    - What do I do if the support doesn't help?
+- intent: prevent_mental_health_problems
+  examples: |
+    - prevent mental health problems?
+    - Can you prevent mental health problems?
+    - Can you prevent mental health problems? 🤔
+- intent: someone_telling
+  examples: |
+    - How do I deal with anyone telling me what to do and not? 🤔
+    - How do I deal with anyone telling me what to do and not?
+    - How do I deal with someone telling me what to do? 🤔
+- intent: distraction_difficult_thoughts
+  examples: |
+    - How can i managae my difficult thoughts or feeling by using distraction?
+    - How can I manage my difficult thoughts or feeling by using distraction? 🧠
+    - How can I use distraction to manage difficult thoughts or feelings? 🤔
+- intent: balanced_perspective
+  examples: |
+    - How do I can reframe the situation and find more balanced perspective? 🔄
+    - How can I reframe the situation and find more balanced perspectives? 🔄
+    - How can I reframe the situation and find more balanced perspectives?
+- intent: ask_mood
+  examples: |
+    - What's your current mood?
+    - Can you tell me how you're feeling?
+    - How are you feeling today?
+    - How are you doing?
+- intent: skill
+  examples: |
+    - what can you do? 💡
+    - what can you do to help me? 💡
+    - what can you do?
+    - how can you help me? 💡
+    - what can you do to help me?
+- intent: creation
+  examples: |
+    - How were you created?
+    - Who created you?
+    - How were you made? 👨‍💻
+    - How were you made?
+    - How were you created? 👨‍💻
+- intent: hate_you
+  examples: |
+    - I don't trust you
+    - I don't like you
+    - I hate you
+    - I don't trust you 😡
+    - I don't like you 😡
+- intent: hate_me
+  examples: |
+    - I know you hate me 😢
+    - You hate me
+    - You don't like me 😢
+    - You don't like me
+    - I know you hate me
+- intent: location
+  examples: |
+    - where are you? 🌍
+    - what is your location?
+    - where do you live? 🌍
+    - where do you live?
+    - what is your location? 🌍
+- intent: problem
+  examples: |
+    - Probably because of my exams
+    - I have a friend. But not she does not talk to me! 👫😢
+    - Probably because my exams are approaching. I feel stressed out because I don't think I've prepared well enough.
+    - Probably because my exams are approaching. I feel stressed out because I don't think I've prepared well enough. 📚😩
+    - I have a friend. But not she does not talk to me!
+- intent: learn_more
+  examples: |
+    - I would like to learn more about it.
+    - ok sure. i would like to learn more about it.
+    - yes, i would like to learn more about it.
+    - yes, i would like to learn more about it. 📚
+    - I would like to learn more about it. 📚
+- intent: user_meditation
+  examples: |
+    - I did what you said and i feel a lot better. Thank you very much.
+    - I did what you said and i feel a lot better. Thank you very much. 🙏
+    - I did what you told 🙏
+    - I did what you said 🙏
+    - I did what you said
+- intent: revenge_bedtime_procrastination
+  examples: |
+    - What is revenge bedtime procrastination? 🛌
+    - can procrastination lead to revenge bedtime procrastination.
+    - What is revenge bedtime procrastination?
+    - revenge bedtime procrastination?
+    - revenge bedtime procrastination? 🛌
+- intent: technology_contribute_procrastination
+  examples: |
+    - does procrastination can be caused by social media or technology? 🤔
+    - does procrastination can be caused by social media or technology?
+    - does technology or social media affect our mental health and lead to procrastination?
+    - Can technology contribute to procrastination? 📱
+    - Can technology contribute to procrastination?
+- intent: user_advice
+  examples: |
+    - I need advice on something
+    - I want some advice 💡
+    - I need advice on something 💡
+    - I want some advice
+    - I need some advice. 💡
+- intent: learn_mental_health
+  examples: |
+    - I want to learn about mental health 🧠
+    - I'm interested in learning about mental health. 🧠
+    - I want to learn about mental health
+    - I'm interested in learning about mental health.
+    - I want to learn more about mental health
+- intent: therapy
+  examples: |
+    - Who is therapy for?
+    - What is Therapy?
+    - Do I need therapy?
+    - What is therapy? 🛋️
+    - Do I need therapy? 🤔
+- intent: maintain_social_connection
+  examples: |
+    - How can I maintain social connections? 🧑‍🤝‍🧑
+    - What if I feel lonely? 😞
+    - How can i maintain social connections?
+    - What if I feel lonely?
+    - How can I maintain social connections? What if I feel lonely? 🤝
+- intent: information_clinical_trials
+  examples: |
+    - Where can I learn more information about clinical trials? 📚
+    - Clinical trials? 📚
+    - Where can I learn more information about clinical trials?
+    - Where do I can learn information about clinical trials?
+    - Where do I can learn information about clinical trials? 📚
+- intent: psychiatric_advance_directive
+  examples: |
+    - learn more about psychiatric advance directive?
+    - Learn more about psychiatric advance directive? 📝
+    - Where can I learn more information about creating a Psychiatric Advance Directive?
+    - creating a psychiatric advance directive?
+    - Creating a psychiatric advance directive? 📝
+- intent: worried_friend_relative
+  examples: |
+    - what shoudl i do if my relative need help and i am worried about them?
+    - What should I do if my relative needs help and I am worried about them? 🤔
+    - What should I do if I'm worried about a friend or relative?
+    - What should I do if I'm worried about a friend? 🤔
+    - What should I do if I'm worried about a friend or relative? 🤔
+- intent: keep_informed
+  examples: |
+    - why i need to keep informed?
+    - Why does i need to keep informed?🤔
+    - Why does i need to keep informed?
+    - Why do I need to keep informed?
+    - why i need to keep informed?🤔
+- intent: health_info_good_bad
+  examples: |
+    - How can I tell if health information is good or bad?
+    - can i tell if my health information is good or bad?
+    - Can I tell if my health information is good or bad? 🤔
+    - How can I tell if my health information is good or bad? 🤔
+    - How can i tell if my health information is good or bad?
+- intent: why_plan
+  examples: |
+    - i need a plan why?📋
+    - i need a plan why?
+    - Why do I need a plan?📋
+    - why does i need a plan?
+    - Why do I need a plan?
+- intent: take_care_physical_health
+  examples: |
+    - take care of physical health?
+    - Take care of physical health? 🏋️‍♂️
+    - How can I take care of my physical health? 🏋️‍♂️
+    - How can i take care of phycial health?
+    - How can I take care of physical health? 🏋️‍♂️
+- intent: thinking_traps
+  examples: |
+    - How can I challenge thinking traps?
+    - How can I control overthinking? 🧠
+    - How can i manage my thinking?
+    - How can I challenge thinking traps? 🧠
+    - How can I manage my thinking? 🤔
+- intent: manage_grief
+  examples: |
+    - How can I manage grief? 😔
+    - Manage grief? 😔
+    - How to manage grief? 😔
+    - Manage grief?
+    - How to manage grief?
+- intent: see_psychiatrist
+  examples: |
+    - How can go to see a psychiatrist? 🧠
+    - go see a psychiatrist?
+    - How can I see a psychiatrist?
+    - Go see a psychiatrist? 🧠
+    - How can go to see a psychiatrist?
+- intent: see_psychologist
+  examples: |
+    - How can I see a psychologist? 🧠
+    - How can go to see a psychologist? 🧠
+    - Go see a psychologist? 🧠
+    - How can I see a psychologist?
+    - go see a psychologist?
+- intent: see_counsellor
+  examples: |
+    - How can I see a counsellor? 🧠
+    - Go see a counsellor? 🧠
+    - go see a counsellor?
+    - How can go to see a counsellor? 🧠
+    - How can I see a counsellor?
+- intent: help_materials_anxiety
+  examples: |
+    - where can i find materials for anxiety?
+    - Where can I find self-help materials for anxiety?
+    - Where can I find self-help materials for anxiety? 📚
+    - Where can I find materials for anxiety? 📚
+    - Where do I can get materials for anxiety? 📚
+- intent: morning
+  examples: |
+    - mrning ☀️
+    - morning ☀️
+    - gm
+    - morning
+    - mrning
+    - Good Morning ☀️
+    - gm 🌄
+- intent: not_talking
+  examples: |
+    - Just shut up 🤐
+    - I don't want to talk about it. 🤐
+    - I don't want to talk about it.
+    - I can't bring myself to open up. 🤐
+    - No just stay away. 🤐
+    - I can't bring myself to open up.
+    - No just stay away.
+- intent: wrong
+  examples: |
+    - Wrong response
+    - Wrong response ❓
+    - That doesn't make sense ❓
+    - Wrong answer ❌
+    - what are you saying?
+    - That doesn't make sense
+    - Wrong answer
+- intent: stupid
+  examples: |
+    - You are dumb 🤦‍♂️
+    - Are you stupid? 🤦‍♂️
+    - You're crazy 🤦‍♂️
+    - Are you stupid?
+    - You're crazy
+    - You are dumb
+    - Are you dumb?
+- intent: something_else
+  examples: |
+    - I want to talk about something else
+    - I don't want to talk about this.
+    - I don't want to talk about this. 🔄
+    - Can we not talk about this? 🔄
+    - I want to talk about something else 🔄
+    - Can we not talk about this?
+    - Let's talk about something else.
+- intent: friends
+  examples: |
+    - I don't have any friends 😔
+    - don't have any friend 😔
+    - I am alone in this world
+    - don't have any friend
+    - I am alone in this world 😔
+    - I don't have any friends
+    - I am alone.
+- intent: ask
+  examples: |
+    - Can i ask you something? ❓
+    - Can you recommend a therapist for anxiety?
+    - Can you tell me something?
+    - How can I find a mental health professional near me?
+    - Can i ask you something?
+    - Can you recommend a therapist for anxiety? ❓
+    - Can you tell me something? ❓
+- intent: meditation
+  examples: |
+    - how i can do meditation.
+    - can you tell about meditation.
+    - what are the steps of meditation. 🧘
+    - how i can do meditation. 🧘
+    - meditation
+    - meditation 🧘
+    - can you tell about meditation. 🧘
+- intent: affect_procrastination
+  examples: |
+    - is there any effect of doing procrastination for a long time?
+    - what are the effects of procrastination in the long term? 🤔
+    - is there any effect of doing procrastination for a long time? 🤔
+    - what are the affect of procrastination for long term?
+    - How does procrastination affect mental health?
+    - how does procrastination affect human mental health? 🧠
+    - how does procrastination afftect human mental health?
+- intent: types_procrastination
+  examples: |
+    - types of procrastination? 🤔
+    - Are there types of procrastination? 🤔
+    - procrastination types? 🤔
+    - procrastination types?
+    - is there any types for procrastination? 🤔
+    - is there any types for procrastination?
+    - Are there types of procrastination?
+- intent: mental_health
+  examples: |
+    - Define Mental Health
+    - Define Mental Health 🧠
+    - what is mental health?
+    - How you can tell mental health?
+    - How can you tell mental health? 🤔
+    - Mental Health information 🧠
+    - what is mental health? 🧠
+- intent: depression
+  examples: |
+    - What is Depression? 😔
+    - What is depression?
+    - what do you mean by depression?
+    - Depression definition 😔
+    - Define Depression
+    - Depression definition
+    - Define Depression 😔
+- intent: help_materials_depression
+  examples: |
+    - where do i can get materials for depression?
+    - Where can I find self-help materials for depression?
+    - Where can I find self-help materials for depression? 📚
+    - Where do I can get materials for depression? 📚
+    - materials related to depression?
+    - Where can I find materials for depression? 📚
+    - where can i find materials for depression?
+- intent: iamabot
+  examples: |
+    - am I talking to a human?
+    - are you a bot?
+    - are you a human?
+    - Are you a bot? 🤖
+    - am I talking to a bot?
+    - Am I talking to a bot? 🤖
+    - Am I talking to a human? 👤
+- intent: stressed
+  examples: |
+    - I am so stressed out
+    - I still feel stressed
+    - I feel stuck
+    - I am so burned out 😩
+    - I still feel stressed 😩
+    - I am so stressed
+    - I am so burned out
+    - I feel stuck 😩
+    - I am so stressed out 😩
+- intent: scared
+  examples: |
+    - That sounds awful. what do i do?
+    - I am scared for myself 😨
+    - No i don't want to feel this way
+    - I'm scared
+    - I am scared for myself
+    - That sounds awful. what do i do? 😨
+    - scared 😨
+    - scared
+    - No i don't want to feel this way 😨
+- intent: suicide
+  examples: |
+    - I've thought about killing myself 💔
+    - I am going to kill myself 💔
+    - I want to die 💔
+    - I want to kill myself 💔
+    - I've thought about killing myself
+    - I want to die
+    - I am going to commit suicide 💔
+    - I am going to commit suicide
+    - I want to kill myself
+- intent: repeat
+  examples: |
+    - You already told me that 🔄
+    - why are you repeating yourself? 🔄
+    - Tell me something new 🔄
+    - Don't repeat yourself
+    - Don't repeat yourself 🔄
+    - why are you repeating yourself?
+    - You mentioned that already 🔄
+    - Tell me something new
+    - You mentioned that already
+- intent: procrastination
+  examples: |
+    - can you tell what is procrastination? 🤔
+    - What is procrastination?
+    - What is procrastination? 🤔
+    - Procrastination Defination?
+    - Define Procrastination? 📚
+    - can you tell what is procrastination?
+    - Procrastination?
+    - Define Procrastination?
+    - Procrastination? 🤔
+- intent: procrastination_beneficial
+  examples: |
+    - is procrastination beneficial to human health? 🤔
+    - does procrastination help for well-being of human mental health?
+    - does procrastination help with the well-being of human mental health? 🤔
+    - can procrastination be beneficial?
+    - can procrastination be beneficial to human beings? 🤔
+    - Can procrastination be beneficial to individuals? 🤔
+    - is procasstination beneficial to human health?
+    - can procrastination be beneficial to human being?
+    - can procrastination be beneficial? 🤔
+- intent: strategies_procrastination
+  examples: |
+    - What are some strategies to avoid procrastination? 📝
+    - Is there any way to avoid procrastination?
+    - suggest some methods to stop procrastination 🛑
+    - give suggestions to avoid procrastination? 🛑
+    - suggest some methods to stop procrastination
+    - Is there any way to avoid procrastination? 🛑
+    - suggest some ways to stop procrastination?
+    - What are some strategies to avoid procrastination?
+- intent: mental_illness_professional
+  examples: |
+    - Where can I find child and youth mental health services?
+    - Where can I find child and youth mental health services? 🧠
+    - How can I find a mental health professional for myself?
+    - I'm worried about my child or teenager. Where can I find help?
+    - Where can older adults find help for mental health concerns?
+    - I'm worried about my child or teenager. Where can I find help? 🧠
+    - How can I find a mental health professional for myself or my child? 🧠
+    - How can I find a mental health professional for myself? 🧠
+- intent: angry
+  examples: |
+    - I'm feeling really irritated.
+    - I can't believe how angry I am!
+    - I'm getting really worked up.
+    - This situation is making me rage.
+    - I'm feeling like I'm about to explode with anger.
+    - This is making me so mad!
+    - I'm feeling so tense and angry right now.
+    - I'm so frustrated right now!
+    - Everything is just making me furious.
+- intent: tired
+  examples: |
+    - I'm feeling low on energy.
+    - I'm feeling worn out.
+    - I'm struggling to stay awake.
+    - I could use a good nap right about now.
+    - I'm exhausted.
+    - I'm feeling really fatigued.
+    - I'm feeling so sleepy.
+    - I feel like I could sleep for days.
+    - I'm so tired, I can barely keep my eyes open.
+- intent: more_options
+  examples: |
+    - Can you recommend something different?
+    - Are there any other possibilities?
+    - Can you suggest something else?
+    - Do you have any other suggestions?
+    - What else can I do?
+    - I'm open to exploring other options.
+    - I'm interested in learning about more options.
+    - What other options do I have?
+    - I need more choices.
+- intent: help
+  examples: |
+    - Can you lend a hand?
+    - Can you provide assistance?
+    - I'm in need of help.
+    - help
+    - Can you help me out?
+    - I need someone to talk to.
+    - Can you offer some guidance?
+    - I need help.
+- intent: thanks
+  examples: |
+    - Thank you very much
+    - good work 👍
+    - Thank you very much 🙏
+    - Thank you
+    - Thanks for the help 🙏
+    - Thanks for the help
+    - Thanks
+    - Thank you 🙏
+    - good work
+    - That's helpful 🙏
+- intent: affirm
+  examples: |
+    - correct
+    - correct ✅
+    - indeed
+    - of course
+    - yes ✅
+    - yes
+    - y
+    - indeed ✅
+    - that sounds good
+    - that sounds good 👍
+- intent: depressed
+  examples: |
+    - I have depression 😔
+    - I am so depressed 😔
+    - I have depression
+    - I can't take it anymore 😔
+    - feel like depressed 😔
+    - feel like depressed
+    - I think i'm depressed. 😔
+    - I think i'm depressed.
+    - depressed
+- intent: death
+  examples: |
+    - My brother died 😔
+    - someone in my family died
+    - My brother died
+    - My friend passed away
+    - someone in my family died 😔
+    - My mom died 😔
+    - My friend passed away 😔
+    - My dad passed away
+    - My mom died
+    - My sister passed away 😔
+- intent: done
+  examples: |
+    - That's all i have to say
+    - This is it. 🤷‍♂️
+    - I don't have anything more to say 🤐
+    - Nothing else
+    - Nothing else 🤷‍♂️
+    - This is it.
+    - That's all. 🛑
+    - no, that would be all
+    - no, that would be all 🤷‍♂️
+- intent: jokes
+  examples: |
+    - try to make me smile 😄
+    - Tell me a joke
+    - joke
+    - can you tell me joke
+    - try to make me laugh
+    - Tell me a joke 😄
+    - try to make me smile
+    - joke 😄
+    - Tell me another joke
+    - try to make me laugh 😄
+- intent: why_procrastination
+  examples: |
+    - what are the psychological reasons behind procrastination? 🧠
+    - what are the reasons people procrastinate? 🤷‍♀️
+    - Why do people procrastinate? 🤷‍♂️
+    - what causes procrastinate?
+    - Why do people procrastinate?
+    - what are the reason people procrastinate?
+    - Reason for procrastinate?
+    - Reason for procrastination? 🤷‍♀️
+    - what causes procrastination? 🤷‍♂️
+    - What are the main reasons for procrastination? 🤷‍♂️
+- intent: how_procrastination
+  examples: |
+    - How to stop procrastination, is there any solution for it? 🛑
+    - How does i stop procrastination?
+    - I procrastinate a lot, how can I overcome it? 🤔
+    - how to stop procrastination, is there any solution for it?
+    - Is there any solution to procrastination?
+    - i procrastinate a lot, how can i overcome it?
+    - How does i can overcome my procrastination problem?
+    - How can I overcome procrastination? 🎯
+    - How can I overcome my procrastination problem? 🎯
+- intent: symptom_depression
+  examples: |
+    - How do i know if i have depression?
+    - Am I depressed? 😔
+    - What are the symptoms of depression? 😞
+    - Am i suffering from depression?
+    - How can you tell if a person is depressed? 🤔
+    - Am I suffering from depression? 😞
+    - Am i depressed?
+    - Am I mentally ill? 🧠
+    - How do I know if I have depression? 🤔
+    - how you can tell if a person is depressed?
+- intent: feeling_overwhelmed
+  examples: |
+    - I'm in a crisis right now and don't know what to do.
+    - I can't handle this anymore. I feel so overwhelmed. 😰
+    - I'm overwhelmed?
+    - I feel so overwhelmed, I don't know what to do.
+    - Hey, I'm feeling really overwhelmed right now.
+    - I'm in a crisis right now and don't know what to do. 😰
+    - I am overwhelmed.
+    - I am overwhelmed. 😰
+    - I can't handle this. I feel so overwhelmed now.
+    - I can't handle this. I feel so overwhelmed now. 😰
+- intent: deny
+  examples: |
+    - not really
+    - n ❌
+    - no
+    - no way ❌
+    - I don't think so ❌
+    - not really ❌
+    - never
+    - no way
+    - don't like that ❌
+    - never ❌
+    - don't like that
+- intent: worthless
+  examples: |
+    - I feel so worthless.
+    - No one likes me. 😔
+    - Feel like worthless. 😔
+    - I am so useless. 😔
+    - Nothing makes sense anymore 😔
+    - I can't do anything.
+    - I am so useless.
+    - I feel so worthless. 😔
+    - I feel like I am useless. 😔
+    - Feel like worthless.
+    - I feel like I am useless.
+    - Nothing makes sense anymore
+- intent: understand
+  examples: |
+    - you're just some chatbot. How would you know?
+    - you're just some chatbot. How would you know? 🤖
+    - Nobody understand me.
+    - You can't possibly know what i'm going through
+    - You don't understand me.
+    - You can't help me
+    - you're useless
+    - You don't understand me. 🤷‍♂️
+    - you're useless 🤷‍♂️
+    - You can't possibly know what i'm going through 🤷‍♂️
+    - you're just some robot. How would you know? 🤖
+- intent: find_doctor_psychiatrist
+  examples: |
+    - How to find a psychiatrist? 🧑‍⚕️
+    - Find a doctor, psychiatrist, psychologist, or counsellor? 🧑‍⚕️
+    - find a doctor
+    - How to find a psychologist? 🧑‍⚕️
+    - How can I find a doctor, psychiatrist, psychologist, or counsellor? 🧠
+    - How to find a doctor? 🧑‍⚕️
+    - how to find a psychologist?
+    - how to find a psychiatrist?
+    - find a doctor, psychiatrist, psychologist or counsellor?
+    - How can I find a doctor, psychiatrist, psychologist, or counsellor?
+    - How to find a counsellor?
+- intent: self_care
+  examples: |
+    - Can you provide some self-care tips?
+    - Can you provide some selfcare tips?
+    - Can you suggest some self-care?
+    - Tips for stress relief?
+    - Tips for stress relief? 💆‍♂️😌
+    - Can you suggest some selfcare?
+    - Can you provide some tips? 💆‍♂️
+    - Self-care tips?
+    - Selfcare tips?
+    - Stress relief tips 😌
+    - self care?
+    - Self-care tips? 💆
+- intent: default
+  examples: |
+    - family
+    - money 💰
+    - friends
+    - girlfriend
+    - relationship 💔
+    - family 👨‍👩‍👦‍👦
+    - financial problems 💸
+    - financial problems
+    - relationship
+    - money
+    - friends 👫
+    - boyfriend
+    - exams 📚
+- intent: casual
+  examples: |
+    - oh I see.
+    - whatever 🤷‍♂️
+    - nice 👍
+    - ok
+    - Fine 👍
+    - okay 👍
+    - oh I see. 🤔
+    - Fine
+    - k 👍
+    - yeah 👍
+    - ok 👍
+    - whatever
+    - okay
+- intent: about
+  examples: |
+    - Tell me about yourself 🤖
+    - Who you are? 🤖
+    - Tell me more about yourself. 🤖
+    - what's your name?
+    - what are you?
+    - what is your name?
+    - what should I call you? 🤖
+    - what is your name? 🤖
+    - Who you are?
+    - what;s your name? 🤖
+    - Who are you? 🤖
+    - what's your name? 🤖
+    - Who are you?
+    - what should I call you?
+    - Tell me more about yourself.
+- intent: sad
+  examples: |
+    - I don't have anyone
+    - I feel so lonely
+    - I am feeling lonely 😔
+    - I feel sad
+    - I am so lonely 😔
+    - I don't have anyone to talk
+    - I am feeling lonely
+    - I don't have anyone to talk 😔
+    - I feel down 😔
+    - I feel sad 😔
+    - I am sad
+    - I don't have anyone 😔
+    - I feel empty
+    - I feel empty 😔
+    - I feel down
+- intent: greet
+  examples: |
+    - ola
+    - hey 👋
+    - Is anyone there?
+    - hi 👋
+    - let's go
+    - hey dude 👋🧑
+    - hello 👋
+    - hello there
+    - hey
+    - let's go 🚀
+    - hi
+    - hey there 👋
+    - hiii 👋
+    - ola 👋
+    - hello
+    - Is anyone there? 🧐
+- intent: sleep
+  examples: |
+    - I haven't slept for the last days.
+    - I have insomnia 😴
+    - I haven't had proper sleep for the past few days.
+    - I can't seem to go to sleep
+    - I am unable to sleep 😴
+    - I haven't had proper sleep for the past few days. 😴
+    - I am suffering from insomnia 😴
+    - I am suffering from insomnia
+    - I haven't slept in a while.
+    - I have sleeping problem 😴
+    - I have sleeping disorder 😴
+    - I haven't slept for the last days. 😴
+    - I can't sleep
+    - I am unable to sleep
+    - I can't seem to go to sleep 😴
+    - I can't sleep 😴
+- intent: goodbye
+  examples: |
+    - bye
+    - sayonara
+    - have a nice day ☀️
+    - goodbye
+    - ok bye 👋
+    - Fare thee well 👋
+    - have a nice day
+    - Bye then
+    - good by
+    - cu 👋
+    - bye bye 👋
+    - cee you later 👋
+    - bye 👋
+    - see you later
+    - good by 👋
+    - see you around 👋
+    - bye bye
+    - cee you later
+    - Bye then 👋
+    - sayonara 👋
+    - ok bye
+- intent: happy
+  examples: |
+    - I feel ok
+    - so so perfect 👌
+    - perfect
+    - great 👍
+    - I am happy
+    - I'm fine
+    - I am amazing
+    - feeling like a king
+    - I am great 👍
+    - cheerful 😊
+    - I feel great today.
+    - I'm fine 👍
+    - wonderful
+    - wonderful ✨
+    - super stoked
+    - so good 👍
+    - I am going to save the world
+    - I feel happy 😊
+    - so perfect 👌
+    - I feel ok 🙂
+    - I feel great today. 😊
+    - I'm good. 👍
+    - I am amazing 😊
+    - so so perfect
+    - amazing 😊
+    - I am feeling very good
+    - happy
+    - I'm good.
+    - I am feeling very good 😊
+    - extremely good 😊
+    - cheerful
+    - I am happy 😊
+    - extremely good
+    - perfect 👌

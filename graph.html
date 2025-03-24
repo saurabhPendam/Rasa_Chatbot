@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Rasa Core Visualisation</title>
+    <script src="https://dagrejs.github.io/project/dagre-d3/latest/dagre-d3.min.js"></script>
+    <script src="https://dagrejs.github.io/project/dagre/latest/dagre.min.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://dagrejs.github.io/project/graphlib-dot/v0.6.3/graphlib-dot.js"></script>
+</head>
+<body>
+<div id="errormsg" style="color: #b00"></div>
+<svg>
+    <style id="graph-style">
+        .node.invisible > rect {
+            display: none;
+        }
+
+        .node.start > rect {
+            fill: #7f7;
+            rx: 30;
+            ry: 18;
+        }
+
+        .node.end > rect {
+            fill: #f77;
+            rx: 30;
+            ry: 18;
+        }
+
+        .node:not(.active) > rect, .node:not(.active) > .label {
+            opacity: 0.4;
+        }
+
+        .edgePath:not(.active) path {
+            opacity: 0.4;
+        }
+
+        .node.ellipsis > rect {
+            fill: #CCC;
+        }
+
+        .node.intent > rect {
+            fill: #7ff;
+        }
+
+        .node.dashed > rect {
+            stroke-dasharray: 5;
+        }
+
+        text {
+            font-weight: 300;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serf, serif;
+            font-size: 14px;
+            color: #1f1d1d;
+        }
+
+        .node rect {
+            stroke: #444;
+            fill: #fff;
+            stroke-width: 1.5px;
+        }
+
+        .edgePath path {
+            stroke: #333;
+            stroke-width: 1.5px;
+        }
+
+        svg {
+            position: fixed;
+            top: 10px;
+            left: 0;
+            height: 100%;
+            width: 100%
+        }
+    </style>
+    <g></g>
+</svg>
+<script>
+
+  function serveGraph() {
+    let oldInputGraphValue;
+
+    const url = 'visualization.dot';
+    const refreshInterval = 500;
+
+    // trigger a refresh by fetching an updated graph
+    setInterval(function () {
+      fetch(url).then(r => r.text()).then(dot => {
+        document.getElementById('errormsg').innerHTML = '';
+        if (oldInputGraphValue === dot) return;
+
+        oldInputGraphValue = dot;
+        drawGraph(dot);
+      }).catch(err => {
+        document.getElementById('errormsg').innerHTML =
+          'Failed to update plot. (' + err.message + ')';
+      });
+    }, refreshInterval);
+  }
+
+  function drawGraph(graph) {
+    let g = graphlibDot.read(graph);
+    // Set margins, if not present
+    if (!g.graph().hasOwnProperty("marginx") &&
+      !g.graph().hasOwnProperty("marginy")) {
+      g.graph().marginx = 20;
+      g.graph().marginy = 20;
+    }
+    g.graph().transition = function (selection) {
+      return selection.transition().duration(300);
+    };
+    // Render the graph into svg g
+    d3.select("svg g").call(render, g);
+  }
+  // Set up zoom support
+  const svg = d3.select("svg"),
+    inner = d3.select("svg g"),
+    zoom = d3.zoom().on("zoom", function () {
+      inner.attr("transform", d3.event.transform);
+    });
+  svg.call(zoom);
+
+  // Create and configure the renderer
+  const render = dagreD3.render();
+
+  let isClient = false;
+  isClient = true;
+
+  if (isClient) {
+    // Mark all nodes and their edges as active
+    cssRules = document.getElementById('graph-style').sheet.cssRules;
+    cssRules[3].style.opacity = 1;
+    cssRules[4].style.opacity = 1;
+
+    let graph;
+    graph = `digraph  {
+0 [class="start active", fillcolor=green, fontsize=12, label=START, style=filled];
+"-1" [class=end, fillcolor=red, fontsize=12, label=END, style=filled];
+1 [class="", fontsize=12, label=utter_local_service];
+2 [class="", fontsize=12, label=action_emotion];
+3 [class="", fontsize=12, label=utter_information_clinical_trials];
+5 [class="", fontsize=12, label=utter_psychiatric_advance_directive];
+7 [class="", fontsize=12, label="utter_support_doesn't_help"];
+9 [class="", fontsize=12, label=utter_prevent_mental_health_problems];
+11 [class="", fontsize=12, label=utter_worried_friend_relative];
+13 [class="", fontsize=12, label=utter_someone_telling];
+15 [class="", fontsize=12, label=utter_keep_informed];
+17 [class="", fontsize=12, label=utter_health_info_good_bad];
+19 [class="", fontsize=12, label=utter_why_plan];
+21 [class="", fontsize=12, label=utter_skill];
+23 [class="", fontsize=12, label=utter_take_care_physical_health];
+25 [class="", fontsize=12, label=utter_distraction_difficult_thoughts];
+27 [class="", fontsize=12, label=utter_balanced_perspective];
+29 [class="", fontsize=12, label=utter_thinking_traps];
+31 [class="", fontsize=12, label=utter_manage_grief];
+33 [class="", fontsize=12, label=utter_find_doctor_psychiatrist];
+35 [class="", fontsize=12, label=utter_see_psychiatrist];
+37 [class="", fontsize=12, label=utter_see_psychologist];
+39 [class="", fontsize=12, label=utter_see_counsellor];
+41 [class="", fontsize=12, label=utter_help_materials_anxiety];
+43 [class="", fontsize=12, label=utter_creation];
+45 [class="", fontsize=12, label=utter_help_materials_depression];
+47 [class="", fontsize=12, label=utter_iamabot];
+49 [class="", fontsize=12, label=utter_goodbye];
+50 [class="", fontsize=12, label=utter_affirm];
+52 [class="", fontsize=12, label=utter_deny];
+54 [class="", fontsize=12, label=utter_happy];
+56 [class="", fontsize=12, label=utter_happy_emoji];
+58 [class="", fontsize=12, label=utter_sad];
+60 [class="", fontsize=12, label=utter_angry];
+62 [class="", fontsize=12, label=utter_tired];
+64 [class="", fontsize=12, label=utter_more_options];
+66 [class="", fontsize=12, label=utter_help];
+68 [class="", fontsize=12, label=utter_ask_mood];
+70 [class="", fontsize=12, label=utter_stressed];
+72 [class="", fontsize=12, label=utter_worthless];
+74 [class="", fontsize=12, label=utter_depressed];
+76 [class="", fontsize=12, label=utter_casual];
+78 [class="", fontsize=12, label=utter_anxious];
+80 [class="", fontsize=12, label=utter_not_talking];
+82 [class="", fontsize=12, label=utter_sleep];
+84 [class="", fontsize=12, label=utter_greet];
+85 [class="", fontsize=12, label=action_emotion];
+86 [class="", fontsize=12, label=utter_ask_mood];
+87 [class="", fontsize=12, label=utter_scared];
+89 [class="", fontsize=12, label=utter_death];
+91 [class="", fontsize=12, label=utter_understand];
+93 [class="", fontsize=12, label=utter_done];
+95 [class="", fontsize=12, label=utter_suicide];
+97 [class="", fontsize=12, label=utter_hate_you];
+99 [class="", fontsize=12, label=utter_hate_me];
+101 [class="", fontsize=12, label=utter_default];
+103 [class="", fontsize=12, label=utter_jokes];
+105 [class="", fontsize=12, label=utter_repeat];
+107 [class="", fontsize=12, label=utter_morning];
+109 [class="", fontsize=12, label=utter_wrong];
+111 [class="", fontsize=12, label=utter_stupid];
+113 [class="", fontsize=12, label=utter_location];
+115 [class="", fontsize=12, label=utter_something_else];
+117 [class="", fontsize=12, label=utter_friends];
+119 [class="", fontsize=12, label=utter_ask];
+121 [class="", fontsize=12, label=utter_problem];
+123 [class="", fontsize=12, label=utter_no_approach];
+125 [class="", fontsize=12, label=utter_learn_more];
+127 [class="", fontsize=12, label=utter_user_agree];
+129 [class="", fontsize=12, label=utter_afternoon];
+131 [class="", fontsize=12, label=utter_meditation];
+133 [class="", fontsize=12, label=utter_user_meditation];
+135 [class="", fontsize=12, label=utter_MindLift_useful];
+137 [class="", fontsize=12, label=utter_user_advice];
+139 [class="", fontsize=12, label=utter_self_care];
+141 [class="", fontsize=12, label=utter_crisis];
+143 [class="", fontsize=12, label=utter_procrastination];
+145 [class="", fontsize=12, label=utter_why_procrastination];
+147 [class="", fontsize=12, label=utter_how_procrastination];
+149 [class="", fontsize=12, label=utter_procrastination_beneficial];
+151 [class="", fontsize=12, label=utter_evening];
+153 [class="", fontsize=12, label=utter_strategies_procrastination];
+155 [class="", fontsize=12, label=utter_affect_procrastination];
+157 [class="", fontsize=12, label=utter_types_procrastination];
+159 [class="", fontsize=12, label=utter_revenge_bedtime_procrastination];
+161 [class="", fontsize=12, label=utter_technology_contribute_procrastination];
+163 [class="", fontsize=12, label=utter_learn_mental_health];
+165 [class="", fontsize=12, label=utter_mental_health];
+167 [class="", fontsize=12, label=utter_mental_health_important];
+169 [class="", fontsize=12, label=utter_depression];
+171 [class="", fontsize=12, label=utter_psychiatrist];
+173 [class="", fontsize=12, label=utter_thanks];
+175 [class="", fontsize=12, label=utter_symptom_depression];
+177 [class="", fontsize=12, label=utter_therapist];
+179 [class="", fontsize=12, label=utter_therapy];
+181 [class="", fontsize=12, label=utter_mental_illness];
+183 [class="", fontsize=12, label=utter_mental_illness_affect];
+185 [class="", fontsize=12, label=utter_causes_mental_illness];
+187 [class="", fontsize=12, label=utter_sign_mental_illness];
+189 [class="", fontsize=12, label=utter_mental_illness_recover];
+191 [class="", fontsize=12, label=utter_mental_illness_symptoms];
+193 [class="", fontsize=12, label=utter_mental_illness_professional];
+195 [class="", fontsize=12, label=utter_no_response];
+197 [class="", fontsize=12, label=utter_mental_health_treatment];
+199 [class="", fontsize=12, label=utter_mental_health_involved];
+201 [class="", fontsize=12, label=utter_difference_mental_health_professional];
+203 [class="", fontsize=12, label=utter_where_help];
+205 [class="", fontsize=12, label=utter_medication_new];
+207 [class="", fontsize=12, label=utter_where_therapy];
+209 [class="", fontsize=12, label=utter_types_mental_health_treatment];
+211 [class="", fontsize=12, label=utter_types_mental_health_professional];
+213 [class="", fontsize=12, label=utter_find_support];
+215 [class="", fontsize=12, label=utter_suffer_mental_health];
+217 [class="", fontsize=12, label=utter_neutral_response];
+219 [class="", fontsize=12, label=utter_cure_mental_health_problems];
+221 [class="", fontsize=12, label=utter_causes_mental_problem];
+223 [class="", fontsize=12, label=utter_worried_mental_health];
+225 [class="", fontsize=12, label=utter_know_unwell];
+227 [class="", fontsize=12, label=utter_maintain_social_connection];
+229 [class="", fontsize=12, label=utter_anxiety_stress];
+231 [class="", fontsize=12, label=utter_sadness_depression];
+233 [class="", fontsize=12, label=utter_cured_medication];
+235 [class="", fontsize=12, label=utter_pay_medication];
+237 [class="", fontsize=12, label=utter_inpatient_care];
+239 [class="", fontsize=12, label=utter_about];
+241 [class="", fontsize=12, label="..."];
+243 [class=intent, fillcolor=lightblue, label="Where does can i go to find other local services nearby?", shape=rect, style=filled];
+244 [class=intent, fillcolor=lightblue, label="Where can I learn more information about clinical trials?", shape=rect, style=filled];
+245 [class=intent, fillcolor=lightblue, label="Learn more about psychiatric advance directive? 📝", shape=rect, style=filled];
+246 [class=intent, fillcolor=lightblue, label="If support doesn't help?", shape=rect, style=filled];
+247 [class=intent, fillcolor=lightblue, label="Prevent mental health problems? 🤔", shape=rect, style=filled];
+248 [class=intent, fillcolor=lightblue, label="What should I do if I'm worried about a friend or relative?", shape=rect, style=filled];
+249 [class=intent, fillcolor=lightblue, label="How do I deal with anyone telling me what to do and not?", shape=rect, style=filled];
+250 [class=intent, fillcolor=lightblue, label="Why does i need to keep informed?🤔", shape=rect, style=filled];
+251 [class=intent, fillcolor=lightblue, label="How can I tell if health information is good or bad? 🤔", shape=rect, style=filled];
+252 [class=intent, fillcolor=lightblue, label="Why do I need a plan?", shape=rect, style=filled];
+253 [class=intent, fillcolor=lightblue, label="what can you do?", shape=rect, style=filled];
+254 [class=intent, fillcolor=lightblue, label="How can I take care of my physical health?", shape=rect, style=filled];
+255 [class=intent, fillcolor=lightblue, label="How can I manage my difficult thoughts or feeling by using distraction? 🧠", shape=rect, style=filled];
+256 [class=intent, fillcolor=lightblue, label="How do I can reframe the situation and find more balanced perspective? 🔄", shape=rect, style=filled];
+257 [class=intent, fillcolor=lightblue, label="How can I manage my thinking? 🤔", shape=rect, style=filled];
+258 [class=intent, fillcolor=lightblue, label="Manage grief?", shape=rect, style=filled];
+259 [class=intent, fillcolor=lightblue, label="Find a doctor, psychiatrist, psychologist, or counsellor? 🧑‍⚕️", shape=rect, style=filled];
+260 [class=intent, fillcolor=lightblue, label="How can I see a psychiatrist?", shape=rect, style=filled];
+261 [class=intent, fillcolor=lightblue, label="How can go to see a psychologist? 🧠", shape=rect, style=filled];
+262 [class=intent, fillcolor=lightblue, label="go see a counsellor?", shape=rect, style=filled];
+263 [class=intent, fillcolor=lightblue, label="Where can I find materials for anxiety? 📚", shape=rect, style=filled];
+264 [class=intent, fillcolor=lightblue, label="How were you created? 👨‍💻", shape=rect, style=filled];
+265 [class=intent, fillcolor=lightblue, label="materials related to depression?", shape=rect, style=filled];
+266 [class=intent, fillcolor=lightblue, label="Are you a bot? 🤖", shape=rect, style=filled];
+267 [class=intent, fillcolor=lightblue, label="have a nice day", shape=rect, style=filled];
+268 [class=intent, fillcolor=lightblue, label="that sounds good 👍", shape=rect, style=filled];
+269 [class=intent, fillcolor=lightblue, label="no way", shape=rect, style=filled];
+270 [class=intent, fillcolor=lightblue, label="super stoked 😃", shape=rect, style=filled];
+271 [class=intent, fillcolor=lightblue, label="😁", shape=rect, style=filled];
+272 [class=intent, fillcolor=lightblue, label="I feel empty", shape=rect, style=filled];
+273 [class=intent, fillcolor=lightblue, label="Everything is just making me furious.", shape=rect, style=filled];
+274 [class=intent, fillcolor=lightblue, label="I feel like I could sleep for days.", shape=rect, style=filled];
+275 [class=intent, fillcolor=lightblue, label="Can you suggest something else?", shape=rect, style=filled];
+276 [class=intent, fillcolor=lightblue, label="Can you help me out?", shape=rect, style=filled];
+277 [class=intent, fillcolor=lightblue, label="What's your current mood?", shape=rect, style=filled];
+278 [class=intent, fillcolor=lightblue, label="I am so stressed 😩", shape=rect, style=filled];
+279 [class=intent, fillcolor=lightblue, label="I feel like I am useless.", shape=rect, style=filled];
+280 [class=intent, fillcolor=lightblue, label=depressed, shape=rect, style=filled];
+281 [class=intent, fillcolor=lightblue, label=ok, shape=rect, style=filled];
+282 [class=intent, fillcolor=lightblue, label="I'm so anxious😟", shape=rect, style=filled];
+283 [class=intent, fillcolor=lightblue, label="No just stay away. 🤐", shape=rect, style=filled];
+284 [class=intent, fillcolor=lightblue, label="I have sleeping problem", shape=rect, style=filled];
+285 [class=intent, fillcolor=lightblue, label="hello 👋", shape=rect, style=filled];
+286 [class=intent, fillcolor=lightblue, label=scared, shape=rect, style=filled];
+287 [class=intent, fillcolor=lightblue, label="My sister passed away", shape=rect, style=filled];
+288 [class=intent, fillcolor=lightblue, label="Nobody understand me.", shape=rect, style=filled];
+289 [class=intent, fillcolor=lightblue, label="I don't have anything more to say", shape=rect, style=filled];
+290 [class=intent, fillcolor=lightblue, label="I am going to kill myself 💔", shape=rect, style=filled];
+291 [class=intent, fillcolor=lightblue, label="I hate you", shape=rect, style=filled];
+292 [class=intent, fillcolor=lightblue, label="You hate me", shape=rect, style=filled];
+293 [class=intent, fillcolor=lightblue, label="exams 📚", shape=rect, style=filled];
+294 [class=intent, fillcolor=lightblue, label=joke, shape=rect, style=filled];
+295 [class=intent, fillcolor=lightblue, label="why are you repeating yourself?", shape=rect, style=filled];
+296 [class=intent, fillcolor=lightblue, label="Good Morning", shape=rect, style=filled];
+297 [class=intent, fillcolor=lightblue, label="what are you saying?", shape=rect, style=filled];
+298 [class=intent, fillcolor=lightblue, label="You are dumb", shape=rect, style=filled];
+299 [class=intent, fillcolor=lightblue, label="where are you? 🌍", shape=rect, style=filled];
+300 [class=intent, fillcolor=lightblue, label="I want to talk about something else 🔄", shape=rect, style=filled];
+301 [class=intent, fillcolor=lightblue, label="I am alone in this world 😔", shape=rect, style=filled];
+302 [class=intent, fillcolor=lightblue, label="Can i ask you something?", shape=rect, style=filled];
+303 [class=intent, fillcolor=lightblue, label="Probably because my exams are approaching. I feel stressed out because I don't think I've prepared well enough.", shape=rect, style=filled];
+304 [class=intent, fillcolor=lightblue, label="i guess not", shape=rect, style=filled];
+305 [class=intent, fillcolor=lightblue, label="I would like to learn more about it.", shape=rect, style=filled];
+306 [class=intent, fillcolor=lightblue, label="Yeah you're right. I deserve a break. 👍", shape=rect, style=filled];
+307 [class=intent, fillcolor=lightblue, label="afternoon ☀️", shape=rect, style=filled];
+308 [class=intent, fillcolor=lightblue, label="what are the steps of meditation. 🧘", shape=rect, style=filled];
+309 [class=intent, fillcolor=lightblue, label="I did what you said and i feel a lot better. Thank you very much.", shape=rect, style=filled];
+310 [class=intent, fillcolor=lightblue, label="Thank you very much again. I'll continue practicing meditation and focus on what I can control. 🙏", shape=rect, style=filled];
+311 [class=intent, fillcolor=lightblue, label="I want some advice 💡", shape=rect, style=filled];
+312 [class=intent, fillcolor=lightblue, label="Stress relief tips 😌", shape=rect, style=filled];
+313 [class=intent, fillcolor=lightblue, label="I can't handle this. I feel so overwhelmed now. 😰", shape=rect, style=filled];
+314 [class=intent, fillcolor=lightblue, label="Define Procrastination?", shape=rect, style=filled];
+315 [class=intent, fillcolor=lightblue, label="what are the psychological reasons behind procrastination?", shape=rect, style=filled];
+316 [class=intent, fillcolor=lightblue, label="i procrastinate a lot, how can i overcome it?", shape=rect, style=filled];
+317 [class=intent, fillcolor=lightblue, label="does procrastination help for well-being of human mental health?", shape=rect, style=filled];
+318 [class=intent, fillcolor=lightblue, label=evening, shape=rect, style=filled];
+319 [class=intent, fillcolor=lightblue, label="suggest some ways to stop procrastination?", shape=rect, style=filled];
+320 [class=intent, fillcolor=lightblue, label="what are the affect of procrastination for long term?", shape=rect, style=filled];
+321 [class=intent, fillcolor=lightblue, label="procrastination types?", shape=rect, style=filled];
+322 [class=intent, fillcolor=lightblue, label="What is revenge bedtime procrastination? 🛌", shape=rect, style=filled];
+323 [class=intent, fillcolor=lightblue, label="Can technology contribute to procrastination?", shape=rect, style=filled];
+324 [class=intent, fillcolor=lightblue, label="I'm interested in learning about mental health. 🧠", shape=rect, style=filled];
+325 [class=intent, fillcolor=lightblue, label="How you can tell mental health?", shape=rect, style=filled];
+326 [class=intent, fillcolor=lightblue, label="Why is mental health important?", shape=rect, style=filled];
+327 [class=intent, fillcolor=lightblue, label="Depression definition 😔", shape=rect, style=filled];
+328 [class=intent, fillcolor=lightblue, label="What is a psychiatrist? 🧠", shape=rect, style=filled];
+329 [class=intent, fillcolor=lightblue, label="good work", shape=rect, style=filled];
+330 [class=intent, fillcolor=lightblue, label="Am i mentall ill?", shape=rect, style=filled];
+331 [class=intent, fillcolor=lightblue, label="what does a therapist do?", shape=rect, style=filled];
+332 [class=intent, fillcolor=lightblue, label="Do I need therapy? 🤔", shape=rect, style=filled];
+333 [class=intent, fillcolor=lightblue, label="What does it feel like to have a mental illness? 🤔", shape=rect, style=filled];
+334 [class=intent, fillcolor=lightblue, label="who does mental illness affect?", shape=rect, style=filled];
+335 [class=intent, fillcolor=lightblue, label="What causes mental illness? 🤔", shape=rect, style=filled];
+336 [class=intent, fillcolor=lightblue, label="What are some of the warning signs of mental illness? ⚠️", shape=rect, style=filled];
+337 [class=intent, fillcolor=lightblue, label="Can people with mental illness recover?", shape=rect, style=filled];
+338 [class=intent, fillcolor=lightblue, label="What should I do if I know someone who appears to have the symptoms of a mental disorder? 🤔", shape=rect, style=filled];
+339 [class=intent, fillcolor=lightblue, label="I'm worried about my child or teenager. Where can I find help?", shape=rect, style=filled];
+340 [class=intent, fillcolor=lightblue, label="", shape=rect, style=filled];
+341 [class=intent, fillcolor=lightblue, label="What treatment options are available?", shape=rect, style=filled];
+342 [class=intent, fillcolor=lightblue, label="If I become involved in treatment, what do I need to know?", shape=rect, style=filled];
+343 [class=intent, fillcolor=lightblue, label="What is the difference between mental health professionals? 🧠", shape=rect, style=filled];
+344 [class=intent, fillcolor=lightblue, label="Where else can I get help? 🤔", shape=rect, style=filled];
+345 [class=intent, fillcolor=lightblue, label="What should I know before starting a new medication? 💊", shape=rect, style=filled];
+346 [class=intent, fillcolor=lightblue, label="Where can I go to find therapy?", shape=rect, style=filled];
+347 [class=intent, fillcolor=lightblue, label="Where can I learn about types of mental health treatment? 📚", shape=rect, style=filled];
+348 [class=intent, fillcolor=lightblue, label="What are the different types of mental health professionals? 🧠", shape=rect, style=filled];
+349 [class=intent, fillcolor=lightblue, label="Where can I go to find a support group?", shape=rect, style=filled];
+350 [class=intent, fillcolor=lightblue, label="We can all suffer from mental health challenges, but developing our wellbeing, resilience, and seeking help early can help prevent challenges becoming serious. 🧠", shape=rect, style=filled];
+351 [class=intent, fillcolor=lightblue, label="nothing much 🤷‍♂️", shape=rect, style=filled];
+352 [class=intent, fillcolor=lightblue, label="Are there cures for mental health problems?", shape=rect, style=filled];
+353 [class=intent, fillcolor=lightblue, label="What causes mental health problems", shape=rect, style=filled];
+354 [class=intent, fillcolor=lightblue, label="What do I do if I'm worried about my mental health?", shape=rect, style=filled];
+355 [class=intent, fillcolor=lightblue, label="How do I know if I'm unwell? 🤔", shape=rect, style=filled];
+356 [class=intent, fillcolor=lightblue, label="What if I feel lonely? 😞", shape=rect, style=filled];
+357 [class=intent, fillcolor=lightblue, label="What's the difference between anxiety and stress? 🤔", shape=rect, style=filled];
+358 [class=intent, fillcolor=lightblue, label="What's the difference between sadness and depression? 🤔", shape=rect, style=filled];
+359 [class=intent, fillcolor=lightblue, label="If I feel better after taking medication, does this mean I am \\"cured\\" and can stop taking it?", shape=rect, style=filled];
+360 [class=intent, fillcolor=lightblue, label="can i get help paying for my medication?", shape=rect, style=filled];
+361 [class=intent, fillcolor=lightblue, label="can i go find inpatient care?", shape=rect, style=filled];
+362 [class=intent, fillcolor=lightblue, label="Who are you? 🤖", shape=rect, style=filled];
+363 [class=intent, fillcolor=lightblue, label="Bye then 👋", shape=rect, style=filled];
+0 -> 241  [class="", key=NONE, label=""];
+0 -> 243  [class="", key=0];
+0 -> 244  [class="", key=0];
+0 -> 245  [class="", key=0];
+0 -> 246  [class="", key=0];
+0 -> 247  [class="", key=0];
+0 -> 248  [class="", key=0];
+0 -> 249  [class="", key=0];
+0 -> 250  [class="", key=0];
+0 -> 251  [class="", key=0];
+0 -> 252  [class="", key=0];
+0 -> 253  [class="", key=0];
+0 -> 254  [class="", key=0];
+0 -> 255  [class="", key=0];
+0 -> 256  [class="", key=0];
+0 -> 257  [class="", key=0];
+0 -> 258  [class="", key=0];
+0 -> 259  [class="", key=0];
+0 -> 260  [class="", key=0];
+0 -> 261  [class="", key=0];
+0 -> 262  [class="", key=0];
+0 -> 263  [class="", key=0];
+0 -> 264  [class="", key=0];
+0 -> 265  [class="", key=0];
+0 -> 266  [class="", key=0];
+0 -> 267  [class="", key=0];
+0 -> 268  [class="", key=0];
+0 -> 269  [class="", key=0];
+0 -> 270  [class="", key=0];
+0 -> 271  [class="", key=0];
+0 -> 272  [class="", key=0];
+0 -> 273  [class="", key=0];
+0 -> 274  [class="", key=0];
+0 -> 275  [class="", key=0];
+0 -> 276  [class="", key=0];
+0 -> 277  [class="", key=0];
+0 -> 278  [class="", key=0];
+0 -> 279  [class="", key=0];
+0 -> 280  [class="", key=0];
+0 -> 281  [class="", key=0];
+0 -> 282  [class="", key=0];
+0 -> 283  [class="", key=0];
+0 -> 284  [class="", key=0];
+0 -> 285  [class="", key=0];
+0 -> 286  [class="", key=0];
+0 -> 287  [class="", key=0];
+0 -> 288  [class="", key=0];
+0 -> 289  [class="", key=0];
+0 -> 290  [class="", key=0];
+0 -> 291  [class="", key=0];
+0 -> 292  [class="", key=0];
+0 -> 293  [class="", key=0];
+0 -> 294  [class="", key=0];
+0 -> 295  [class="", key=0];
+0 -> 296  [class="", key=0];
+0 -> 297  [class="", key=0];
+0 -> 298  [class="", key=0];
+0 -> 299  [class="", key=0];
+0 -> 300  [class="", key=0];
+0 -> 301  [class="", key=0];
+0 -> 302  [class="", key=0];
+0 -> 303  [class="", key=0];
+0 -> 304  [class="", key=0];
+0 -> 305  [class="", key=0];
+0 -> 306  [class="", key=0];
+0 -> 307  [class="", key=0];
+0 -> 308  [class="", key=0];
+0 -> 309  [class="", key=0];
+0 -> 310  [class="", key=0];
+0 -> 311  [class="", key=0];
+0 -> 312  [class="", key=0];
+0 -> 313  [class="", key=0];
+0 -> 314  [class="", key=0];
+0 -> 315  [class="", key=0];
+0 -> 316  [class="", key=0];
+0 -> 317  [class="", key=0];
+0 -> 318  [class="", key=0];
+0 -> 319  [class="", key=0];
+0 -> 320  [class="", key=0];
+0 -> 321  [class="", key=0];
+0 -> 322  [class="", key=0];
+0 -> 323  [class="", key=0];
+0 -> 324  [class="", key=0];
+0 -> 325  [class="", key=0];
+0 -> 326  [class="", key=0];
+0 -> 327  [class="", key=0];
+0 -> 328  [class="", key=0];
+0 -> 329  [class="", key=0];
+0 -> 330  [class="", key=0];
+0 -> 331  [class="", key=0];
+0 -> 332  [class="", key=0];
+0 -> 333  [class="", key=0];
+0 -> 334  [class="", key=0];
+0 -> 335  [class="", key=0];
+0 -> 336  [class="", key=0];
+0 -> 337  [class="", key=0];
+0 -> 338  [class="", key=0];
+0 -> 339  [class="", key=0];
+0 -> 340  [class="", key=0];
+0 -> 341  [class="", key=0];
+0 -> 342  [class="", key=0];
+0 -> 343  [class="", key=0];
+0 -> 344  [class="", key=0];
+0 -> 345  [class="", key=0];
+0 -> 346  [class="", key=0];
+0 -> 347  [class="", key=0];
+0 -> 348  [class="", key=0];
+0 -> 349  [class="", key=0];
+0 -> 350  [class="", key=0];
+0 -> 351  [class="", key=0];
+0 -> 352  [class="", key=0];
+0 -> 353  [class="", key=0];
+0 -> 354  [class="", key=0];
+0 -> 355  [class="", key=0];
+0 -> 356  [class="", key=0];
+0 -> 357  [class="", key=0];
+0 -> 358  [class="", key=0];
+0 -> 359  [class="", key=0];
+0 -> 360  [class="", key=0];
+0 -> 361  [class="", key=0];
+0 -> 362  [class="", key=0];
+1 -> 2  [class="", key=NONE, label=""];
+2 -> "-1"  [class="", key=NONE, label=""];
+3 -> 2  [class="", key=NONE, label=""];
+5 -> 2  [class="", key=NONE, label=""];
+7 -> 2  [class="", key=NONE, label=""];
+9 -> 2  [class="", key=NONE, label=""];
+11 -> 2  [class="", key=NONE, label=""];
+13 -> 2  [class="", key=NONE, label=""];
+15 -> 2  [class="", key=NONE, label=""];
+17 -> 2  [class="", key=NONE, label=""];
+19 -> 2  [class="", key=NONE, label=""];
+21 -> 2  [class="", key=NONE, label=""];
+23 -> 2  [class="", key=NONE, label=""];
+25 -> 2  [class="", key=NONE, label=""];
+27 -> 2  [class="", key=NONE, label=""];
+29 -> 2  [class="", key=NONE, label=""];
+31 -> 2  [class="", key=NONE, label=""];
+33 -> 2  [class="", key=NONE, label=""];
+35 -> 2  [class="", key=NONE, label=""];
+37 -> 2  [class="", key=NONE, label=""];
+39 -> 2  [class="", key=NONE, label=""];
+41 -> 2  [class="", key=NONE, label=""];
+43 -> 2  [class="", key=NONE, label=""];
+45 -> 2  [class="", key=NONE, label=""];
+47 -> 2  [class="", key=NONE, label=""];
+49 -> "-1"  [class="", key=NONE, label=""];
+50 -> 2  [class="", key=NONE, label=""];
+52 -> 2  [class="", key=NONE, label=""];
+54 -> 2  [class="", key=NONE, label=""];
+56 -> 2  [class="", key=NONE, label=""];
+58 -> 2  [class="", key=NONE, label=""];
+60 -> 2  [class="", key=NONE, label=""];
+62 -> 2  [class="", key=NONE, label=""];
+64 -> 2  [class="", key=NONE, label=""];
+66 -> 2  [class="", key=NONE, label=""];
+68 -> 2  [class="", key=NONE, label=""];
+70 -> 2  [class="", key=NONE, label=""];
+72 -> 2  [class="", key=NONE, label=""];
+74 -> 2  [class="", key=NONE, label=""];
+76 -> 2  [class="", key=NONE, label=""];
+78 -> 2  [class="", key=NONE, label=""];
+80 -> 2  [class="", key=NONE, label=""];
+82 -> 2  [class="", key=NONE, label=""];
+84 -> 85  [class="", key=NONE, label=""];
+85 -> 86  [class="", key=NONE, label=""];
+86 -> "-1"  [class="", key=NONE, label=""];
+87 -> 2  [class="", key=NONE, label=""];
+89 -> 2  [class="", key=NONE, label=""];
+91 -> 2  [class="", key=NONE, label=""];
+93 -> 2  [class="", key=NONE, label=""];
+95 -> 2  [class="", key=NONE, label=""];
+97 -> 2  [class="", key=NONE, label=""];
+99 -> 2  [class="", key=NONE, label=""];
+101 -> 2  [class="", key=NONE, label=""];
+103 -> 2  [class="", key=NONE, label=""];
+105 -> 2  [class="", key=NONE, label=""];
+107 -> 2  [class="", key=NONE, label=""];
+109 -> 2  [class="", key=NONE, label=""];
+111 -> 2  [class="", key=NONE, label=""];
+113 -> 2  [class="", key=NONE, label=""];
+115 -> 2  [class="", key=NONE, label=""];
+117 -> 2  [class="", key=NONE, label=""];
+119 -> 2  [class="", key=NONE, label=""];
+121 -> 2  [class="", key=NONE, label=""];
+123 -> 2  [class="", key=NONE, label=""];
+125 -> 2  [class="", key=NONE, label=""];
+127 -> 2  [class="", key=NONE, label=""];
+129 -> 2  [class="", key=NONE, label=""];
+131 -> 2  [class="", key=NONE, label=""];
+133 -> 2  [class="", key=NONE, label=""];
+135 -> 2  [class="", key=NONE, label=""];
+137 -> 2  [class="", key=NONE, label=""];
+139 -> 2  [class="", key=NONE, label=""];
+141 -> 2  [class="", key=NONE, label=""];
+143 -> 2  [class="", key=NONE, label=""];
+145 -> 2  [class="", key=NONE, label=""];
+147 -> 2  [class="", key=NONE, label=""];
+149 -> 2  [class="", key=NONE, label=""];
+151 -> 2  [class="", key=NONE, label=""];
+153 -> 2  [class="", key=NONE, label=""];
+155 -> 2  [class="", key=NONE, label=""];
+157 -> 2  [class="", key=NONE, label=""];
+159 -> 2  [class="", key=NONE, label=""];
+161 -> 2  [class="", key=NONE, label=""];
+163 -> 2  [class="", key=NONE, label=""];
+165 -> 2  [class="", key=NONE, label=""];
+167 -> 2  [class="", key=NONE, label=""];
+169 -> 2  [class="", key=NONE, label=""];
+171 -> 2  [class="", key=NONE, label=""];
+173 -> 2  [class="", key=NONE, label=""];
+175 -> 2  [class="", key=NONE, label=""];
+177 -> 2  [class="", key=NONE, label=""];
+179 -> 2  [class="", key=NONE, label=""];
+181 -> 2  [class="", key=NONE, label=""];
+183 -> 2  [class="", key=NONE, label=""];
+185 -> 2  [class="", key=NONE, label=""];
+187 -> 2  [class="", key=NONE, label=""];
+189 -> 2  [class="", key=NONE, label=""];
+191 -> 2  [class="", key=NONE, label=""];
+193 -> 2  [class="", key=NONE, label=""];
+195 -> 2  [class="", key=NONE, label=""];
+197 -> 2  [class="", key=NONE, label=""];
+199 -> 2  [class="", key=NONE, label=""];
+201 -> 2  [class="", key=NONE, label=""];
+203 -> 2  [class="", key=NONE, label=""];
+205 -> 2  [class="", key=NONE, label=""];
+207 -> 2  [class="", key=NONE, label=""];
+209 -> 2  [class="", key=NONE, label=""];
+211 -> 2  [class="", key=NONE, label=""];
+213 -> 2  [class="", key=NONE, label=""];
+215 -> 2  [class="", key=NONE, label=""];
+217 -> 2  [class="", key=NONE, label=""];
+219 -> 2  [class="", key=NONE, label=""];
+221 -> 2  [class="", key=NONE, label=""];
+223 -> 2  [class="", key=NONE, label=""];
+225 -> 2  [class="", key=NONE, label=""];
+227 -> 2  [class="", key=NONE, label=""];
+229 -> 2  [class="", key=NONE, label=""];
+231 -> 2  [class="", key=NONE, label=""];
+233 -> 2  [class="", key=NONE, label=""];
+235 -> 2  [class="", key=NONE, label=""];
+237 -> 2  [class="", key=NONE, label=""];
+239 -> 2  [class="", key=NONE, label=""];
+241 -> 363  [class="", key=0];
+243 -> 1  [class="", key=0];
+244 -> 3  [class="", key=0];
+245 -> 5  [class="", key=0];
+246 -> 7  [class="", key=0];
+247 -> 9  [class="", key=0];
+248 -> 11  [class="", key=0];
+249 -> 13  [class="", key=0];
+250 -> 15  [class="", key=0];
+251 -> 17  [class="", key=0];
+252 -> 19  [class="", key=0];
+253 -> 21  [class="", key=0];
+254 -> 23  [class="", key=0];
+255 -> 25  [class="", key=0];
+256 -> 27  [class="", key=0];
+257 -> 29  [class="", key=0];
+258 -> 31  [class="", key=0];
+259 -> 33  [class="", key=0];
+260 -> 35  [class="", key=0];
+261 -> 37  [class="", key=0];
+262 -> 39  [class="", key=0];
+263 -> 41  [class="", key=0];
+264 -> 43  [class="", key=0];
+265 -> 45  [class="", key=0];
+266 -> 47  [class="", key=0];
+267 -> 49  [class="", key=0];
+268 -> 50  [class="", key=0];
+269 -> 52  [class="", key=0];
+270 -> 54  [class="", key=0];
+271 -> 56  [class="", key=0];
+272 -> 58  [class="", key=0];
+273 -> 60  [class="", key=0];
+274 -> 62  [class="", key=0];
+275 -> 64  [class="", key=0];
+276 -> 66  [class="", key=0];
+277 -> 68  [class="", key=0];
+278 -> 70  [class="", key=0];
+279 -> 72  [class="", key=0];
+280 -> 74  [class="", key=0];
+281 -> 76  [class="", key=0];
+282 -> 78  [class="", key=0];
+283 -> 80  [class="", key=0];
+284 -> 82  [class="", key=0];
+285 -> 84  [class="", key=0];
+286 -> 87  [class="", key=0];
+287 -> 89  [class="", key=0];
+288 -> 91  [class="", key=0];
+289 -> 93  [class="", key=0];
+290 -> 95  [class="", key=0];
+291 -> 97  [class="", key=0];
+292 -> 99  [class="", key=0];
+293 -> 101  [class="", key=0];
+294 -> 103  [class="", key=0];
+295 -> 105  [class="", key=0];
+296 -> 107  [class="", key=0];
+297 -> 109  [class="", key=0];
+298 -> 111  [class="", key=0];
+299 -> 113  [class="", key=0];
+300 -> 115  [class="", key=0];
+301 -> 117  [class="", key=0];
+302 -> 119  [class="", key=0];
+303 -> 121  [class="", key=0];
+304 -> 123  [class="", key=0];
+305 -> 125  [class="", key=0];
+306 -> 127  [class="", key=0];
+307 -> 129  [class="", key=0];
+308 -> 131  [class="", key=0];
+309 -> 133  [class="", key=0];
+310 -> 135  [class="", key=0];
+311 -> 137  [class="", key=0];
+312 -> 139  [class="", key=0];
+313 -> 141  [class="", key=0];
+314 -> 143  [class="", key=0];
+315 -> 145  [class="", key=0];
+316 -> 147  [class="", key=0];
+317 -> 149  [class="", key=0];
+318 -> 151  [class="", key=0];
+319 -> 153  [class="", key=0];
+320 -> 155  [class="", key=0];
+321 -> 157  [class="", key=0];
+322 -> 159  [class="", key=0];
+323 -> 161  [class="", key=0];
+324 -> 163  [class="", key=0];
+325 -> 165  [class="", key=0];
+326 -> 167  [class="", key=0];
+327 -> 169  [class="", key=0];
+328 -> 171  [class="", key=0];
+329 -> 173  [class="", key=0];
+330 -> 175  [class="", key=0];
+331 -> 177  [class="", key=0];
+332 -> 179  [class="", key=0];
+333 -> 181  [class="", key=0];
+334 -> 183  [class="", key=0];
+335 -> 185  [class="", key=0];
+336 -> 187  [class="", key=0];
+337 -> 189  [class="", key=0];
+338 -> 191  [class="", key=0];
+339 -> 193  [class="", key=0];
+340 -> 195  [class="", key=0];
+341 -> 197  [class="", key=0];
+342 -> 199  [class="", key=0];
+343 -> 201  [class="", key=0];
+344 -> 203  [class="", key=0];
+345 -> 205  [class="", key=0];
+346 -> 207  [class="", key=0];
+347 -> 209  [class="", key=0];
+348 -> 211  [class="", key=0];
+349 -> 213  [class="", key=0];
+350 -> 215  [class="", key=0];
+351 -> 217  [class="", key=0];
+352 -> 219  [class="", key=0];
+353 -> 221  [class="", key=0];
+354 -> 223  [class="", key=0];
+355 -> 225  [class="", key=0];
+356 -> 227  [class="", key=0];
+357 -> 229  [class="", key=0];
+358 -> 231  [class="", key=0];
+359 -> 233  [class="", key=0];
+360 -> 235  [class="", key=0];
+361 -> 237  [class="", key=0];
+362 -> 239  [class="", key=0];
+363 -> 49  [class="", key=0];
+}
+`;
+    drawGraph(graph);
+  } else {
+    serveGraph();
+  }
+
+
+</script>
+</body>
+</html>
