@@ -19,22 +19,33 @@ import statistics
 
 SentimentData = namedtuple('SentimentData', ['text', 'raw_emotion_scores', 'top_emotions', 'vader_scores', 'detected_emotion'])
 
+import os
+import psycopg2
+from typing import Any, Text, Dict, List
+
 def establish_db_connection():
     try:
-        conn = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="root",
-            database="latestdb"
+        conn = psycopg2.connect(
+            host="dpg-cvkd7hl6ubrc73fngelg-a",
+            database="rasa_chatbot_db",
+            user="rasa_chatbot_db_user",
+            password="6QG94OxVIK5LXTUImmphktCko33s1OMR",
+            port="5432"
         )
         cursor = conn.cursor()
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS sentiment_data
-            (id INT AUTO_INCREMENT PRIMARY KEY, text TEXT, raw_emotion_scores TEXT, top_emotions TEXT, vader_scores TEXT, detected_emotion TEXT)
+            (id SERIAL PRIMARY KEY, 
+             text TEXT, 
+             raw_emotion_scores TEXT, 
+             top_emotions TEXT, 
+             vader_scores TEXT, 
+             detected_emotion TEXT)
         """)
+        conn.commit()
         return conn, cursor
-    except mysql.connector.Error as e:
-        print(f"Error connecting to MySQL: {e}")
+    except Exception as e:
+        print(f"Error connecting to PostgreSQL: {e}")
         return None, None
 
 class ActionEmotion(Action):

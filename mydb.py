@@ -1,32 +1,29 @@
+import os
 import mysql.connector
 
-# Connect to MySQL server with appropriate authentication
-database = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    passwd='root',
-    auth_plugin='mysql_native_password'  # Specify explicitly
-)
-  
+def create_database():
+    conn = None
+    try:
+        # Connect to MySQL server with appropriate authentication
+        conn = mysql.connector.connect(
+            host=os.environ.get('DB_HOST', 'dpg-cvkd7hl6ubrc73fngelg-a'),
+            user=os.environ.get('DB_USER', 'rasa_chatbot_db_user'),
+            password=os.environ.get('DB_PASSWORD', '6QG94OxVIK5LXTUImmphktCko33s1OMR'),
+            port=os.environ.get('DB_PORT', '5432')  # Specify explicitly
+        )
+        conn.autocommit = True
+        cursor = conn.cursor()
 
-try:
-    # Create a cursor object
-    cursorObject = database.cursor()
+        # Create database if not exists
+        cursor.execute(f"CREATE DATABASE {os.environ.get('DB_NAME')}")
+        print("Database created successfully")
 
-    # Execute SQL query to create a new database
-    cursorObject.execute("CREATE DATABASE IF NOT EXISTS latestdb")
+    except Exception as e:
+        print(f"Error: {e}")
 
-    # Commit the transaction
-    database.commit()
+    finally:
+        if conn:
+            conn.close()
 
-    print("ALL DONE")
-
-except mysql.connector.Error as err:
-    print("Error:", err)
-
-finally:
-    # Ensure proper closure of resources
-    if cursorObject:
-        cursorObject.close()
-    if database:
-        database.close()
+if __name__ == "__main__":
+    create_database()

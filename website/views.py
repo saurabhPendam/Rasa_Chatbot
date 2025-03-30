@@ -11,15 +11,18 @@ import base64
 import statistics
 
 
+
 def generate_report(request):
     conn = None  
     if request.method == 'POST':
         try:
-            conn = mysql.connector.connect(
-                host="localhost",
-                user="root",
-                password="root",
-                database="latestdb"
+            # Establish connection using Render PostgreSQL environment variables
+            conn = psycopg2.connect(
+                host=os.environ.get('DB_HOST', 'dpg-cvkd7hl6ubrc73fngelg-a'),
+                database=os.environ.get('DB_NAME', 'rasa_chatbot_db'),
+                user=os.environ.get('DB_USER', 'rasa_chatbot_db_user'),
+                password=os.environ.get('DB_PASSWORD', '6QG94OxVIK5LXTUImmphktCko33s1OMR'),
+                port=os.environ.get('DB_PORT', '5432')
             )
             c = conn.cursor()
             c.execute("SELECT * FROM sentiment_data")
