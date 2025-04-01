@@ -51,29 +51,29 @@ make changes in rasa/actions.py, endpoints.yml, website/views.py.
 ## Screenshots
 
 ### Chatbot Interface
-![1st Screenshot](1st_ss.jpg)
-![2nd Screenshot](2nd_ss.jpg)
-![3rd Screenshot](3rd_ss.jpg)
-![4th Screenshot](4th_ss.jpg)
-![5th Screenshot](5th_ss.jpg)
-![6th Screenshot](6th_ss.jpg)
+![1st Screenshot](images/1st_ss.jpg)
+![2nd Screenshot](images/2nd_ss.jpg)
+![3rd Screenshot](images/3rd_ss.jpg)
+![4th Screenshot](images/4th_ss.jpg)
+![5th Screenshot](images/5th_ss.jpg)
+![6th Screenshot](images/6th_ss.jpg)
 
 ### Chatbot Design
-![Chatbot Diagram](diagram.PNG)
+![Chatbot Diagram](images/diagram.png)
 
 ### Evaluation and Analysis
 
 - **Confusion Matrix (Without Normalization)**
-  ![Confusion Matrix](action_level_analysis.PNG)
+  ![Confusion Matrix](images/action_level_analysis.PNG)
 
 - **Evaluation Result on Conversation Level**
-  ![Conversation Analysis](conversation_analysis.PNG)
+  ![Conversation Analysis](images/conversation_analysis.png)
 
 - **Intent Evaluation Result**
-  ![Evaluation Metrics](evaluation_metrics.jpg)
+  ![Evaluation Metrics](images/evaluation_metrics.jpg)
 
 - **Intent Prediction Confidence Distribution**
-  ![Intent Histogram](intent_histogram.png)
+  ![Intent Histogram](images/intent_histogram.png)
 
 ## Future Enhancements
 
