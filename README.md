@@ -59,15 +59,15 @@ make changes in rasa/actions.py, endpoints.yml, website/views.py.
 ![6th Screenshot](6th_ss.jpg)
 
 ### Chatbot Design
-![Chatbot Diagram](diagram.png)
+![Chatbot Diagram](diagram.PNG)
 
 ### Evaluation and Analysis
 
 - **Confusion Matrix (Without Normalization)**
-  ![Confusion Matrix](action_level_analysis.png)
+  ![Confusion Matrix](action_level_analysis.PNG)
 
 - **Evaluation Result on Conversation Level**
-  ![Conversation Analysis](conversation_analysis.png)
+  ![Conversation Analysis](conversation_analysis.PNG)
 
 - **Intent Evaluation Result**
   ![Evaluation Metrics](evaluation_metrics.jpg)
